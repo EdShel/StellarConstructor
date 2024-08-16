@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cj1qv5rq1eymd"]
+[gd_scene load_steps=6 format=3 uid="uid://cj1qv5rq1eymd"]
 
 [ext_resource type="Script" path="res://objects/ui/toolbar/toolbar_item.gd" id="1_5pi6s"]
 [ext_resource type="Texture2D" uid="uid://cp056doje7fow" path="res://sprites/items.png" id="1_mhblc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bbqh0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eqvsx"]
 atlas = ExtResource("1_mhblc")
@@ -12,12 +14,11 @@ font_size = 32
 outline_size = 6
 outline_color = Color(0.450861, 0.0886688, 0.391607, 1)
 
-[node name="ToolbarItem" type="Control"]
+[node name="ToolbarItem" type="Panel"]
 custom_minimum_size = Vector2(64, 64)
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 64.0
+offset_bottom = 64.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_bbqh0")
 script = ExtResource("1_5pi6s")
 
 [node name="Icon" type="TextureRect" parent="."]
@@ -46,3 +47,5 @@ grow_vertical = 0
 text = "0"
 label_settings = SubResource("LabelSettings_h0sp5")
 horizontal_alignment = 2
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

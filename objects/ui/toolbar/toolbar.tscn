@@ -12,31 +12,31 @@ offset_bottom = 64.0
 theme_override_constants/separation = 8
 alignment = 1
 
-[node name="ToolbarItem" parent="." instance=ExtResource("1_gsl5n")]
+[node name="road" parent="." instance=ExtResource("1_gsl5n")]
 layout_mode = 2
 
-[node name="Icon" parent="ToolbarItem" index="0"]
+[node name="Icon" parent="road" index="0"]
 texture = ExtResource("2_3lwy2")
 
-[node name="ToolbarItem2" parent="." instance=ExtResource("1_gsl5n")]
+[node name="factory" parent="." instance=ExtResource("1_gsl5n")]
 layout_mode = 2
 
-[node name="Icon" parent="ToolbarItem2" index="0"]
+[node name="Icon" parent="factory" index="0"]
 texture = ExtResource("3_ts8rh")
 
-[node name="ToolbarItem3" parent="." instance=ExtResource("1_gsl5n")]
+[node name="solar" parent="." instance=ExtResource("1_gsl5n")]
 layout_mode = 2
 
-[node name="Icon" parent="ToolbarItem3" index="0"]
+[node name="Icon" parent="solar" index="0"]
 texture = ExtResource("4_ufjfk")
 
-[node name="ToolbarItem4" parent="." instance=ExtResource("1_gsl5n")]
+[node name="landing_pad" parent="." instance=ExtResource("1_gsl5n")]
 layout_mode = 2
 
-[node name="Icon" parent="ToolbarItem4" index="0"]
+[node name="Icon" parent="landing_pad" index="0"]
 texture = ExtResource("5_j3vlf")
 
-[editable path="ToolbarItem"]
-[editable path="ToolbarItem2"]
-[editable path="ToolbarItem3"]
-[editable path="ToolbarItem4"]
+[editable path="road"]
+[editable path="factory"]
+[editable path="solar"]
+[editable path="landing_pad"]

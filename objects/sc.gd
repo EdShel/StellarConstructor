@@ -1,3 +1,3 @@
 extends Node
 
-signal toolbelt_item_pressed(item_type: String)
+signal toolbar_item_pressed(item_type: String)

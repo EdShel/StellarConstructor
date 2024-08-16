@@ -9,8 +9,5 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func world_to_tile(worldPos: Vector2) -> Vector2i:
-	pass
-
 func set_tile(pos: Vector2i, tile: Node2D):
 	pass

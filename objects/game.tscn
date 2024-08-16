@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bnrh75aysmd6v"]
+[gd_scene load_steps=5 format=3 uid="uid://bnrh75aysmd6v"]
 
 [ext_resource type="Script" path="res://objects/game.gd" id="1_86h5b"]
 [ext_resource type="Script" path="res://objects/utilities/camera_controller.gd" id="1_bl32n"]
 [ext_resource type="PackedScene" uid="uid://cm7qf6mbektuu" path="res://objects/build_grid/build_grid.tscn" id="3_pjmpo"]
+[ext_resource type="PackedScene" uid="uid://d3nm0p4heakg0" path="res://objects/ui/game_ui.tscn" id="4_hdt7s"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_86h5b")
@@ -14,3 +15,5 @@ script = ExtResource("1_bl32n")
 [node name="BuildGrid" parent="." instance=ExtResource("3_pjmpo")]
 unique_name_in_owner = true
 position = Vector2(159, 84)
+
+[node name="GameUi" parent="." instance=ExtResource("4_hdt7s")]
