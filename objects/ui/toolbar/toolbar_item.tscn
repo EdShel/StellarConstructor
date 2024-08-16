@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://cj1qv5rq1eymd"]
+
+[ext_resource type="Script" path="res://objects/ui/toolbar/toolbar_item.gd" id="1_5pi6s"]
+[ext_resource type="Texture2D" uid="uid://cp056doje7fow" path="res://sprites/items.png" id="1_mhblc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eqvsx"]
+atlas = ExtResource("1_mhblc")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="LabelSettings" id="LabelSettings_h0sp5"]
+font_size = 32
+outline_size = 6
+outline_color = Color(0.450861, 0.0886688, 0.391607, 1)
+
+[node name="ToolbarItem" type="Control"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_5pi6s")
+
+[node name="Icon" type="TextureRect" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_eqvsx")
+stretch_mode = 4
+
+[node name="CountLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -19.0
+offset_right = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_h0sp5")
+horizontal_alignment = 2

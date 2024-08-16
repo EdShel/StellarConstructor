@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://csmg87yqk0t47"]
+
+[ext_resource type="PackedScene" uid="uid://cj1qv5rq1eymd" path="res://objects/ui/toolbar/toolbar_item.tscn" id="1_gsl5n"]
+[ext_resource type="Texture2D" uid="uid://ccmoicbfjvdp4" path="res://sprites/items/road.tres" id="2_3lwy2"]
+[ext_resource type="Texture2D" uid="uid://b3vrsy81ufvcq" path="res://sprites/items/factory.tres" id="3_ts8rh"]
+[ext_resource type="Texture2D" uid="uid://c1qt7alxjfufl" path="res://sprites/items/solar.tres" id="4_ufjfk"]
+[ext_resource type="Texture2D" uid="uid://dtprhahhr5wd0" path="res://sprites/items/landing_pad.tres" id="5_j3vlf"]
+
+[node name="Toolbar" type="HBoxContainer"]
+offset_right = 268.0
+offset_bottom = 64.0
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="ToolbarItem" parent="." instance=ExtResource("1_gsl5n")]
+layout_mode = 2
+
+[node name="Icon" parent="ToolbarItem" index="0"]
+texture = ExtResource("2_3lwy2")
+
+[node name="ToolbarItem2" parent="." instance=ExtResource("1_gsl5n")]
+layout_mode = 2
+
+[node name="Icon" parent="ToolbarItem2" index="0"]
+texture = ExtResource("3_ts8rh")
+
+[node name="ToolbarItem3" parent="." instance=ExtResource("1_gsl5n")]
+layout_mode = 2
+
+[node name="Icon" parent="ToolbarItem3" index="0"]
+texture = ExtResource("4_ufjfk")
+
+[node name="ToolbarItem4" parent="." instance=ExtResource("1_gsl5n")]
+layout_mode = 2
+
+[node name="Icon" parent="ToolbarItem4" index="0"]
+texture = ExtResource("5_j3vlf")
+
+[editable path="ToolbarItem"]
+[editable path="ToolbarItem2"]
+[editable path="ToolbarItem3"]
+[editable path="ToolbarItem4"]
