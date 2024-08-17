@@ -34,8 +34,11 @@ func _exit_tree() -> void:
 func _process(delta: float) -> void:
 	if !source or no_power or shooting_state:
 		return
-	source.inventory.increase("ore", -1)
-	shooting_state = ShootingState.new("ore")
+	var item_to_shoot = source.get_item_to_shoot()
+	if item_to_shoot.is_empty():
+		return
+	source.inventory.increase(item_to_shoot, -1)
+	shooting_state = ShootingState.new(item_to_shoot)
 	%AnimationPlayer.play("shoot")
 
 func update_direction(new_direction: Direction) -> void:
