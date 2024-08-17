@@ -26,6 +26,10 @@ var power_goal = 50
 var power_production = 0
 var power_consumption = 0
 
+var ore_miner: ResourceMiner
+var crystal_miner: ResourceMiner
+var water_miner: ResourceMiner
+
 func _enter_tree() -> void:
 	SC.connect("toolbar_item_pressed", handle_toolbar_item_pressed)
 	SC.connect("toolbar_item_place", handle_toolbar_item_place)
@@ -34,6 +38,10 @@ func _enter_tree() -> void:
 	SC.connect("increase_power_consumption", handle_power_consumption_increase)
 	
 	SC.connect("increase_inventory_item", handle_increase_inventory_item)
+	
+	ore_miner = ResourceMiner.new("ore")
+	crystal_miner = ResourceMiner.new("crystal")
+	water_miner = ResourceMiner.new("water")
 	
 	SC.set_game(self)
 
@@ -45,7 +53,9 @@ func _exit_tree() -> void:
 	return # TODO: unsubscribe
 
 func _process(delta: float) -> void:
-	pass
+	ore_miner.process(delta)
+	crystal_miner.process(delta)
+	water_miner.process(delta)
 
 func handle_toolbar_item_pressed(item_type: String) -> void:
 	if _ghost_node_item == item_type:
@@ -104,3 +114,35 @@ func handle_increase_inventory_item(item_type: String, amount: int) -> void:
 	var item = find_inventory_item(item_type)
 	item["count"] += amount
 	%Toolbar.init_inventory(inventory)
+
+
+class ResourceMiner:
+	var planet_buffer: float = 0.0
+	var mining_rate_per_sec: float = 10.0
+	var item_type: String
+	
+	var previous_round_robin_index = -1
+	
+	func _init(item_type: String) -> void:
+		self.item_type = item_type
+	
+	func process(dt: float) -> void:
+		planet_buffer += dt * mining_rate_per_sec
+		try_dump_buffer_to_landing_pad()
+	
+	func try_dump_buffer_to_landing_pad() -> void:
+		var game = SC.game
+		var landing_pads = game.get_tree().get_nodes_in_group("landing_pads")
+		var matching_landing_pads = landing_pads.filter(func(l):
+			return l.recipe.size() > 0 and l.recipe["item_type"] == item_type
+		)
+		if matching_landing_pads.size() == 0:
+			return
+		var items_to_dump = matching_landing_pads.front().recipe["item_count"]
+		if (self.planet_buffer < items_to_dump):
+			return
+		self.previous_round_robin_index = wrapi(self.previous_round_robin_index + 1, 0, matching_landing_pads.size())
+		var target_pad = matching_landing_pads[self.previous_round_robin_index]
+		target_pad.inventory.increase(self.item_type, items_to_dump)
+		self.planet_buffer -= items_to_dump
+		

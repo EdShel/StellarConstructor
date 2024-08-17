@@ -9,7 +9,7 @@ func handle_open_build(item_type: String, node: Node2D) -> void:
 		var popup = preload("res://objects/ui/build_manager/launch_pad_recipe_popup.tscn").instantiate()
 		popup.connect("closed", func(recipe: Dictionary) -> void: 
 			popup.queue_free()
-			print(recipe)
+			node.recipe = recipe
 		)
 		%PopupContainer.add_child(popup)
 		pass
