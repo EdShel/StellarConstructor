@@ -34,5 +34,14 @@ func handle_open_build(item_type: String, node: Node2D) -> void:
 				return
 		)
 		%PopupContainer.add_child(popup)
-		
+		return
+	if item_type == "factory":
+		var popup = preload("res://objects/ui/build_manager/factory_recipe_popup.tscn").instantiate()
+		popup.connect("closed", func(data: Dictionary) -> void:
+			popup.queue_free()
+			if data.is_empty():
+				return
+			node.recipe = data["recipe"]
+		)
+		%PopupContainer.add_child(popup)
 		return

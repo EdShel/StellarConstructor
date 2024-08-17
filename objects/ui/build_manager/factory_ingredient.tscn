@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://kl4tg2ggh8gw"]
+
+[ext_resource type="Texture2D" uid="uid://desxjs3p6vwyt" path="res://sprites/items/ingot.tres" id="1_7lsyu"]
+[ext_resource type="Script" path="res://objects/ui/build_manager/factory_ingredient.gd" id="2_3c2cl"]
+
+[node name="FactoryIngredient" type="TextureRect"]
+texture = ExtResource("1_7lsyu")
+script = ExtResource("2_3c2cl")
+
+[node name="IngredientCount" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -19.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "x2"
+horizontal_alignment = 2

@@ -5,6 +5,8 @@ var no_power: Node2D = null
 
 var inventory: Inventory = Inventory.new([])
 
+var recipe: FactoryRecipe = null
+
 func _ready() -> void:
 	SC.power_stats_changed.connect(update_power_status)
 	SC.increase_power_consumption.emit(power_consumption)
