@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://objects/game.gd" id="1_86h5b"]
 [ext_resource type="Script" path="res://objects/utilities/camera_controller.gd" id="1_bl32n"]
 [ext_resource type="PackedScene" uid="uid://cm7qf6mbektuu" path="res://objects/build_grid/build_grid.tscn" id="3_pjmpo"]
-[ext_resource type="PackedScene" uid="uid://d3nm0p4heakg0" path="res://objects/ui/game_ui.tscn" id="4_hdt7s"]
+[ext_resource type="PackedScene" uid="uid://csmg87yqk0t47" path="res://objects/ui/toolbar/toolbar.tscn" id="4_ot15t"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_86h5b")
@@ -16,4 +16,16 @@ script = ExtResource("1_bl32n")
 unique_name_in_owner = true
 position = Vector2(159, 84)
 
-[node name="GameUi" parent="." instance=ExtResource("4_hdt7s")]
+[node name="GameUI" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameUI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="Toolbar" parent="GameUI/VBoxContainer" instance=ExtResource("4_ot15t")]
+unique_name_in_owner = true
+layout_mode = 2

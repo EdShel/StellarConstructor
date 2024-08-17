@@ -4,6 +4,7 @@ extends Node2D
 @export var badColor: Color
 
 var collisions_count: int = 0
+var collision_safe_padding_pixels = 4
 
 func _ready() -> void:
 	pass # Replace with function body.
@@ -19,12 +20,17 @@ func _input(event: InputEvent) -> void:
 		var world_coord = get_canvas_transform().affine_inverse() * event.position
 		var snap_coord = snapped(world_coord, Vector2(64, 64))
 		global_position = snap_coord
+	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if collisions_count <= 0:
+			SC.toolbar_item_place.emit(global_position)
+		
 
 func update(sprite: AtlasTexture):
 	var size_pixels = sprite.region.size.x
 	var size_grid = ceil(size_pixels / 64)
 	%Sprite2D.texture = sprite
-	%CollisionShape2D.shape.size = sprite.region.size
+	
+	%CollisionShape2D.shape.size = sprite.region.size - Vector2(2 * collision_safe_padding_pixels, 2 * collision_safe_padding_pixels)
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:

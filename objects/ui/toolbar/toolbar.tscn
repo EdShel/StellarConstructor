@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://csmg87yqk0t47"]
+[gd_scene load_steps=7 format=3 uid="uid://csmg87yqk0t47"]
 
 [ext_resource type="PackedScene" uid="uid://cj1qv5rq1eymd" path="res://objects/ui/toolbar/toolbar_item.tscn" id="1_gsl5n"]
+[ext_resource type="Script" path="res://objects/ui/toolbar/toolbar.gd" id="1_k1agg"]
 [ext_resource type="Texture2D" uid="uid://ccmoicbfjvdp4" path="res://sprites/items/piston.tres" id="2_3lwy2"]
 [ext_resource type="Texture2D" uid="uid://b3vrsy81ufvcq" path="res://sprites/items/factory.tres" id="3_ts8rh"]
 [ext_resource type="Texture2D" uid="uid://c1qt7alxjfufl" path="res://sprites/items/solar.tres" id="4_ufjfk"]
@@ -11,6 +12,7 @@ offset_right = 268.0
 offset_bottom = 64.0
 theme_override_constants/separation = 8
 alignment = 1
+script = ExtResource("1_k1agg")
 
 [node name="piston" parent="." instance=ExtResource("1_gsl5n")]
 layout_mode = 2

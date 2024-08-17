@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://tfy5rbcibrdv"]
+
+[ext_resource type="Texture2D" uid="uid://c2vf1d1tjcxc4" path="res://sprites/builds/piston.tres" id="1_bbshr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h7sv1"]
+size = Vector2(64, 64)
+
+[node name="Piston" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_bbshr")
+
+[node name="Area2D" type="Area2D" parent="."]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_h7sv1")

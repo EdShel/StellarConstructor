@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://cv2cwwd0l4ayr"]
+
+[sub_resource type="GDScript" id="GDScript_qdwan"]
+script/source = "extends Node2D
+
+@export var power_consumption: int = 1
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="Building" type="Node2D"]
+script = SubResource("GDScript_qdwan")
+
+[node name="Area2D" type="Area2D" parent="."]

@@ -7,6 +7,7 @@
 size = Vector2(64, 64)
 
 [node name="Ghost" type="Node2D"]
+z_index = 1
 script = ExtResource("1_sx6ga")
 okColor = Color(1, 1, 1, 0.392157)
 badColor = Color(1, 0, 0, 1)
@@ -17,6 +18,7 @@ modulate = Color(1, 1, 1, 0.435294)
 texture = ExtResource("1_m28ua")
 
 [node name="Area2D" type="Area2D" parent="."]
+unique_name_in_owner = true
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
