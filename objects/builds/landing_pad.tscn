@@ -9,4 +9,5 @@
 texture = ExtResource("1_dnmxl")
 
 [node name="BuildCollider" parent="." instance=ExtResource("2_ce11o")]
+cell_size = 2
 item_type = "landing_pad"

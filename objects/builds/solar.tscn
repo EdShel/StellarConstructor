@@ -11,4 +11,3 @@ script = ExtResource("1_bggm3")
 texture = ExtResource("1_kqngy")
 
 [node name="BuildCollider" parent="." instance=ExtResource("3_gfxar")]
-cell_size = 2

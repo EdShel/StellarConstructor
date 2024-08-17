@@ -19,6 +19,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		var world_coord = get_canvas_transform().affine_inverse() * event.position
 		var snap_coord = snapped(world_coord, Vector2(64, 64))
+		if %CollisionShape2D.shape.size.x > 64:
+			snap_coord -= Vector2(32, 32) # I'm so sorry :(
 		global_position = snap_coord
 		get_viewport().set_input_as_handled()
 	elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
