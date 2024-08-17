@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://bq3lf7flujcsu"]
+[gd_scene load_steps=4 format=3 uid="uid://bq3lf7flujcsu"]
 
+[ext_resource type="Script" path="res://objects/builds/solar.gd" id="1_bggm3"]
 [ext_resource type="Texture2D" uid="uid://di8ahk33q0apr" path="res://sprites/builds/solar.tres" id="1_kqngy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k2a2r"]
 size = Vector2(64, 64)
 
 [node name="Solar" type="Node2D"]
+script = ExtResource("1_bggm3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_kqngy")
@@ -15,3 +17,5 @@ monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_k2a2r")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

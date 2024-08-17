@@ -22,15 +22,27 @@ var inventory: Array[Dictionary] = [
 	},
 ]
 
+var power_goal = 50
+var power_production = 0
+var power_consumption = 0
+
 func _enter_tree() -> void:
 	SC.connect("toolbar_item_pressed", handle_toolbar_item_pressed)
 	SC.connect("toolbar_item_place", handle_toolbar_item_place)
+	
+	SC.connect("increase_power_production", handle_power_production_increase)
+	SC.connect("increase_power_consumption", handle_power_consumption_increase)
+	
+	SC.connect("increase_inventory_item", handle_increase_inventory_item)
+	
+	SC.set_game(self)
 
 func _ready() -> void:
 	%Toolbar.init_inventory(inventory)
 
 func _exit_tree() -> void:
-	pass # TODO: unsubscribe
+	SC.set_game(null)
+	return # TODO: unsubscribe
 
 func _process(delta: float) -> void:
 	pass
@@ -79,3 +91,16 @@ func clear_ghost():
 
 func find_inventory_item(item: String) -> Dictionary:
 	return inventory.filter(func(i: Dictionary): return i["item"] == item).front()
+
+func handle_power_production_increase(amount: int) -> void:
+	power_production += amount
+	SC.power_stats_changed.emit()
+
+func handle_power_consumption_increase(amount: int) -> void:
+	power_consumption += amount
+	SC.power_stats_changed.emit()
+
+func handle_increase_inventory_item(item_type: String, amount: int) -> void:
+	var item = find_inventory_item(item_type)
+	item["count"] += amount
+	%Toolbar.init_inventory(inventory)

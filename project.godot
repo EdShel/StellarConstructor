@@ -19,6 +19,20 @@ config/icon="res://icon.svg"
 
 SC="*res://objects/sc.tscn"
 
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="viewport"
+
+[file_customization]
+
+folder_colors={
+"res://objects/build_grid/": "blue",
+"res://objects/builds/": "green",
+"res://objects/ui/": "red"
+}
+
 [gui]
 
 theme/custom="res://styles/my_theme.tres"

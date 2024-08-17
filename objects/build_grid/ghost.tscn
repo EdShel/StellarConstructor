@@ -19,6 +19,7 @@ texture = ExtResource("1_m28ua")
 
 [node name="Area2D" type="Area2D" parent="."]
 unique_name_in_owner = true
+input_pickable = false
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]

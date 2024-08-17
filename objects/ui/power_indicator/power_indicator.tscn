@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=3 uid="uid://dwjelvpqhhdju"]
+
+[ext_resource type="Script" path="res://objects/ui/power_indicator/power_indicator.gd" id="1_gsxj3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vj6bb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n5bum"]
+bg_color = Color(1, 0.905882, 0.384314, 1)
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_crox6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_udtot"]
+bg_color = Color(0.898039, 0.231373, 0.266667, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_slyl0"]
+font_size = 23
+outline_size = 6
+outline_color = Color(0.207843, 0.0588235, 0.231373, 1)
+
+[node name="PowerIndicator" type="Panel"]
+custom_minimum_size = Vector2(0, 28)
+offset_right = 772.0
+offset_bottom = 40.0
+mouse_filter = 1
+script = ExtResource("1_gsxj3")
+
+[node name="ProductionIndicator" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxEmpty_vj6bb")
+theme_override_styles/fill = SubResource("StyleBoxFlat_n5bum")
+value = 50.0
+show_percentage = false
+
+[node name="ConsumptionIndicator" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxEmpty_crox6")
+theme_override_styles/fill = SubResource("StyleBoxFlat_udtot")
+value = 25.0
+show_percentage = false
+
+[node name="Status" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Consumption %s, Production %s, Goal %s"
+label_settings = SubResource("LabelSettings_slyl0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

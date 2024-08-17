@@ -14,9 +14,6 @@ var zoom_max: float = 2.0
 
 var move_speed: float = 300
 
-func _ready() -> void:
-	pass # Replace with function body.
-
 func _unhandled_input(event: InputEvent) -> void:
 	if !is_drag_allowed:
 		return
