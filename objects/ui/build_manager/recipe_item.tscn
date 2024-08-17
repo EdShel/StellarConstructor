@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cheh1dak3vjjt"]
+
+[ext_resource type="Texture2D" uid="uid://b2qcqcgb1fqoc" path="res://sprites/items/ore.tres" id="1_jm8j6"]
+[ext_resource type="Script" path="res://objects/ui/build_manager/recipe_item.gd" id="1_rblus"]
+
+[node name="RecipeItem" type="VBoxContainer"]
+script = ExtResource("1_rblus")
+
+[node name="Icon" type="TextureRect" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("1_jm8j6")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Ore delivery"
+horizontal_alignment = 1

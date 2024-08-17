@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://brjonc116ab3y"]
+[gd_scene load_steps=4 format=3 uid="uid://brjonc116ab3y"]
 
 [ext_resource type="Texture2D" uid="uid://qcw04lpx4sy2" path="res://sprites/builds/landing_pad.tres" id="1_dnmxl"]
+[ext_resource type="Script" path="res://objects/builds/landing_pad.gd" id="1_orncb"]
 [ext_resource type="PackedScene" uid="uid://o506ib7yigid" path="res://objects/builds/utilities/build_collider.tscn" id="2_ce11o"]
 
 [node name="LandingPad" type="Node2D"]
+script = ExtResource("1_orncb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_dnmxl")

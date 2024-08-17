@@ -13,6 +13,8 @@ signal power_stats_changed()
 
 signal increase_inventory_item(item_type: String, amount: int)
 
+signal open_build(item_type: String, node: Node2D)
+
 func set_game(new_game: Node2D) -> void:
 	game = new_game
 	if new_game:
