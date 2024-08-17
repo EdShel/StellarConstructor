@@ -1,6 +1,6 @@
 extends Node
 
-var game: Node2D = null
+var game: Game = null
 
 signal game_changed(game: Node)
 
@@ -15,7 +15,7 @@ signal increase_inventory_item(item_type: String, amount: int)
 
 signal open_build(item_type: String, node: Node2D)
 
-func set_game(new_game: Node2D) -> void:
+func set_game(new_game: Game) -> void:
 	game = new_game
 	if new_game:
 		game_changed.emit(game)

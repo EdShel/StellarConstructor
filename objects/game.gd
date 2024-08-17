@@ -1,4 +1,5 @@
 extends Node2D
+class_name Game
 
 var _ghost_node: Node2D = null
 var _ghost_node_item: String = ""

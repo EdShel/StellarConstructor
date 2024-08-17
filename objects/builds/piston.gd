@@ -16,10 +16,14 @@ var _direction: Direction = Direction.RIGHT
 	set(value): update_direction(value)
 
 var source: Node2D = null
+var warning: Node2D = null
+var no_power: Node2D = null
 
 func _ready() -> void:
+	SC.power_stats_changed.connect(update_power_status)
 	SC.increase_power_consumption.emit(power_consumption)
 	update_direction(direction)
+	update_source(null)
 
 func _exit_tree() -> void:
 	SC.increase_power_consumption.emit(-power_consumption)
@@ -48,8 +52,34 @@ func get_source_scanner_texture() -> Texture2D:
 	return load("res://sprites/builds/piston_down.tres")
 
 func _on_source_scanner_area_entered(area: Area2D) -> void:
-	source = area.get_parent()
+	update_source(area.get_parent())
 
 func _on_source_scanner_area_exited(area: Area2D) -> void:
 	if area.get_parent() == source:
-		source = null
+		update_source(null)
+
+func update_source(new_source: Node2D) -> void:
+	if !%SourceScanner:
+		return # This node is destroying
+		
+	if new_source and !new_source.get("inventory"):
+		new_source = null
+	source = new_source
+	if !source and !warning:
+		warning = preload("res://objects/builds/utilities/warning.tscn").instantiate()
+		%SourceScanner.add_child(warning)
+		return
+	if source and warning:
+		warning.queue_free()
+		warning = null
+
+func update_power_status() -> void:
+	var game = SC.game
+	if game.power_consumption > game.power_production and !no_power:
+		no_power = preload("res://objects/builds/utilities/warning.tscn").instantiate()
+		no_power.type = "no_power"
+		add_child(no_power)
+		return
+	if game.power_consumption <= game.power_production and no_power:
+		no_power.queue_free()
+		no_power = null
