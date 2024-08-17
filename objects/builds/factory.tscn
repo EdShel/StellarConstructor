@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://ct60r41w2k4xk"]
+
+[ext_resource type="Script" path="res://objects/builds/factory.gd" id="1_60gtp"]
+[ext_resource type="Texture2D" uid="uid://ctw7m0qjk8ixb" path="res://sprites/builds/factory.tres" id="1_y0182"]
+[ext_resource type="PackedScene" uid="uid://o506ib7yigid" path="res://objects/builds/utilities/build_collider.tscn" id="2_dcm46"]
+
+[node name="Factory" type="Node2D"]
+script = ExtResource("1_60gtp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_y0182")
+
+[node name="BuildCollider" parent="." instance=ExtResource("2_dcm46")]
+cell_size = 2
+item_type = "factory"
