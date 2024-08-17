@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://brjonc116ab3y"]
+
+[ext_resource type="Texture2D" uid="uid://qcw04lpx4sy2" path="res://sprites/builds/landing_pad.tres" id="1_dnmxl"]
+[ext_resource type="PackedScene" uid="uid://o506ib7yigid" path="res://objects/builds/utilities/build_collider.tscn" id="2_ce11o"]
+
+[node name="LandingPad" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_dnmxl")
+
+[node name="BuildCollider" parent="." instance=ExtResource("2_ce11o")]
+item_type = "landing_pad"

@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://o506ib7yigid"]
+
+[ext_resource type="Script" path="res://objects/builds/utilities/build_collider.gd" id="1_np4ig"]
+
+[node name="BuildCollider" type="Area2D"]
+monitoring = false
+script = ExtResource("1_np4ig")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

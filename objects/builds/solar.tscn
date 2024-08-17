@@ -2,9 +2,7 @@
 
 [ext_resource type="Script" path="res://objects/builds/solar.gd" id="1_bggm3"]
 [ext_resource type="Texture2D" uid="uid://di8ahk33q0apr" path="res://sprites/builds/solar.tres" id="1_kqngy"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_k2a2r"]
-size = Vector2(64, 64)
+[ext_resource type="PackedScene" uid="uid://o506ib7yigid" path="res://objects/builds/utilities/build_collider.tscn" id="3_gfxar"]
 
 [node name="Solar" type="Node2D"]
 script = ExtResource("1_bggm3")
@@ -12,10 +10,5 @@ script = ExtResource("1_bggm3")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_kqngy")
 
-[node name="Area2D" type="Area2D" parent="."]
-monitoring = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_k2a2r")
-
-[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
+[node name="BuildCollider" parent="." instance=ExtResource("3_gfxar")]
+cell_size = 2
