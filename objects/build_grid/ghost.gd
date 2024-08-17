@@ -18,9 +18,6 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		var world_coord = get_canvas_transform().affine_inverse() * event.position
 		var snap_coord = snapped(world_coord, Vector2(64, 64))
-		print(world_coord)
-		print(snap_coord)
-		var half_cell_offset = Vector2(32, 32)
 		global_position = snap_coord
 
 func update(sprite: AtlasTexture):
