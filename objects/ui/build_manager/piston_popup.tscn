@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://chmvcqlcqmk7y"]
+
+[ext_resource type="PackedScene" uid="uid://11ur7mtmo2rn" path="res://objects/ui/build_manager/base_popup.tscn" id="1_5ae4e"]
+[ext_resource type="Script" path="res://objects/ui/build_manager/piston_popup.gd" id="2_cb4u1"]
+[ext_resource type="Texture2D" uid="uid://dxrv5p3lkibr0" path="res://sprites/directions/right.tres" id="3_71s4k"]
+[ext_resource type="Texture2D" uid="uid://cfsmy0g3axvlt" path="res://sprites/directions/left.tres" id="3_icccm"]
+[ext_resource type="Texture2D" uid="uid://dnhaqeh105f6e" path="res://sprites/directions/up.tres" id="4_v1k27"]
+[ext_resource type="Texture2D" uid="uid://ba2affub3of43" path="res://sprites/directions/down.tres" id="6_0k76h"]
+
+[node name="PistonPopup" instance=ExtResource("1_5ae4e")]
+script = ExtResource("2_cb4u1")
+
+[node name="Directions" type="HBoxContainer" parent="HBoxContainer/MarginContainer/VBoxContainer" index="2"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="right" type="TextureRect" parent="HBoxContainer/MarginContainer/VBoxContainer/Directions" index="0"]
+layout_mode = 2
+texture = ExtResource("3_71s4k")
+
+[node name="up" type="TextureRect" parent="HBoxContainer/MarginContainer/VBoxContainer/Directions" index="1"]
+layout_mode = 2
+texture = ExtResource("4_v1k27")
+
+[node name="left" type="TextureRect" parent="HBoxContainer/MarginContainer/VBoxContainer/Directions" index="2"]
+layout_mode = 2
+texture = ExtResource("3_icccm")
+
+[node name="down" type="TextureRect" parent="HBoxContainer/MarginContainer/VBoxContainer/Directions" index="3"]
+layout_mode = 2
+texture = ExtResource("6_0k76h")

@@ -1,12 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://tfy5rbcibrdv"]
+[gd_scene load_steps=5 format=3 uid="uid://tfy5rbcibrdv"]
 
 [ext_resource type="Texture2D" uid="uid://c2vf1d1tjcxc4" path="res://sprites/builds/piston.tres" id="1_bbshr"]
+[ext_resource type="Script" path="res://objects/builds/piston.gd" id="1_q3k6m"]
 [ext_resource type="PackedScene" uid="uid://o506ib7yigid" path="res://objects/builds/utilities/build_collider.tscn" id="2_egx0n"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_phcrk"]
+size = Vector2(62, 62)
+
 [node name="Piston" type="Node2D"]
+script = ExtResource("1_q3k6m")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 texture = ExtResource("1_bbshr")
 
 [node name="BuildCollider" parent="." instance=ExtResource("2_egx0n")]
 item_type = "piston"
+
+[node name="SourceScanner" type="Area2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-64, 0)
+input_pickable = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SourceScanner"]
+shape = SubResource("RectangleShape2D_phcrk")
+
+[connection signal="area_entered" from="SourceScanner" to="." method="_on_source_scanner_area_entered"]
+[connection signal="area_exited" from="SourceScanner" to="." method="_on_source_scanner_area_exited"]
