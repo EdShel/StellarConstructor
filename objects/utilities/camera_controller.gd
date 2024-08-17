@@ -31,20 +31,25 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
 			var new_zoom = clamp(zoom.x + zoom_sensitivity, zoom_min, zoom_max)
-			zoom = Vector2(new_zoom, new_zoom)
-			if is_dragging:
-				var delta = event.position - drag_start_position
-				position = camera_drag_start_position - delta / zoom.x
+			update_zoom(new_zoom, event)
 			get_viewport().set_input_as_handled()
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			var new_zoom = clamp(zoom.x - zoom_sensitivity, zoom_min, zoom_max)
-			zoom = Vector2(new_zoom, new_zoom)
-			if is_dragging:
-				var delta = event.position - drag_start_position
-				position = camera_drag_start_position - delta / zoom.x
+			update_zoom(new_zoom, event)
 			get_viewport().set_input_as_handled()
 
 	elif event is InputEventMouseMotion and is_dragging:
 		var delta = event.position - drag_start_position
 		position = camera_drag_start_position - delta / zoom.x
 		get_viewport().set_input_as_handled()
+
+func update_zoom(new_zoom: float, event: InputEventMouseButton) -> void:
+	zoom = Vector2(new_zoom, new_zoom)
+	if is_dragging:
+		var delta = event.position - drag_start_position
+		position = camera_drag_start_position - delta / zoom.x
+	
+	var zoom_range = zoom_max - zoom_min
+	var volume = new_zoom / zoom_range
+	var sfx = AudioServer.get_bus_index("SFX_Env")
+	AudioServer.set_bus_volume_db(sfx, linear_to_db(volume))

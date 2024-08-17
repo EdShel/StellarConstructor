@@ -19,6 +19,8 @@ var source: Node2D = null
 var warning: Node2D = null
 var no_power: Node2D = null
 
+var shooting_state: ShootingState = null
+
 func _ready() -> void:
 	SC.power_stats_changed.connect(update_power_status)
 	SC.increase_power_consumption.emit(power_consumption)
@@ -27,6 +29,12 @@ func _ready() -> void:
 
 func _exit_tree() -> void:
 	SC.increase_power_consumption.emit(-power_consumption)
+
+func _process(delta: float) -> void:
+	if !source or no_power or shooting_state:
+		return
+	shooting_state = ShootingState.new("ore")
+	%AnimationPlayer.play("shoot")
 
 func update_direction(new_direction: Direction) -> void:
 	_direction = new_direction
@@ -46,7 +54,7 @@ func get_source_scanner_texture() -> Texture2D:
 	if direction == Direction.LEFT:
 		return load("res://sprites/builds/piston_left.tres")
 	if direction == Direction.RIGHT:
-		return load("res://sprites/builds/piston.tres")
+		return load("res://sprites/builds/piston_right.tres")
 	if direction == Direction.UP:
 		return load("res://sprites/builds/piston_up.tres")
 	return load("res://sprites/builds/piston_down.tres")
@@ -83,3 +91,14 @@ func update_power_status() -> void:
 	if game.power_consumption <= game.power_production and no_power:
 		no_power.queue_free()
 		no_power = null
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	shooting_state = null
+	print("Shoot end")
+
+class ShootingState:
+	var item_type: String
+	
+	func _init(item_type: String) -> void:
+		self.item_type = item_type
