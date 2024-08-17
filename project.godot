@@ -42,6 +42,11 @@ landing_pads="For querying landing pads"
 theme/custom="res://styles/my_theme.tres"
 theme/custom_font="res://styles/Roboto-Regular.ttf"
 
+[layer_names]
+
+2d_physics/layer_1="build"
+2d_physics/layer_2="item"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

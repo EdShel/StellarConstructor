@@ -9,6 +9,7 @@ enum Direction {
 }
 
 var _direction: Direction = Direction.RIGHT
+var shoot_direction: Vector2 = Vector2(1, 0)
 
 @export var power_consumption = 1
 @export var direction: Direction:
@@ -33,12 +34,14 @@ func _exit_tree() -> void:
 func _process(delta: float) -> void:
 	if !source or no_power or shooting_state:
 		return
+	source.inventory.increase("ore", -1)
 	shooting_state = ShootingState.new("ore")
 	%AnimationPlayer.play("shoot")
 
 func update_direction(new_direction: Direction) -> void:
 	_direction = new_direction
 	%SourceScanner.position = get_source_scanner_position()
+	shoot_direction = get_shoot_direction()
 	%Sprite2D.texture = get_source_scanner_texture()
 
 func get_source_scanner_position() -> Vector2:
@@ -49,6 +52,15 @@ func get_source_scanner_position() -> Vector2:
 	if direction == Direction.UP:
 		return Vector2(0, 64)
 	return Vector2(0, -64)
+	
+func get_shoot_direction() -> Vector2:
+	if direction == Direction.LEFT:
+		return Vector2(-1, 0)
+	if direction == Direction.RIGHT:
+		return Vector2(1, 0)
+	if direction == Direction.UP:
+		return Vector2(0, -1)
+	return Vector2(0, 1)
 	
 func get_source_scanner_texture() -> Texture2D:
 	if direction == Direction.LEFT:
@@ -67,7 +79,7 @@ func _on_source_scanner_area_exited(area: Area2D) -> void:
 		update_source(null)
 
 func update_source(new_source: Node2D) -> void:
-	if !%SourceScanner:
+	if is_queued_for_deletion() or !%SourceScanner:
 		return # This node is destroying
 		
 	if new_source and !new_source.get("inventory"):
@@ -92,10 +104,20 @@ func update_power_status() -> void:
 		no_power.queue_free()
 		no_power = null
 
+func shoot() -> void:
+	if !shooting_state:
+		printerr("Not shooting but got command to shoot")
+		return
+	var bullet = preload("res://objects/bullets/item_bullet.tscn").instantiate()
+	bullet.parent = self
+	bullet.direction = shoot_direction
+	bullet.item_type = shooting_state.item_type
+	get_parent().add_child(bullet)
+	bullet.global_position = global_position
+	
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	shooting_state = null
-	print("Shoot end")
 
 class ShootingState:
 	var item_type: String
