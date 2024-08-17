@@ -1,6 +1,7 @@
-extends Control
+extends PanelContainer
+class_name BasePopup
 
-signal close(result: Dictionary)
+signal closed(result: Dictionary)
 
 @export var title: String = "TITLE"
 @export var subtitle: String = "SUBTITLE"
@@ -10,4 +11,4 @@ func _ready() -> void:
 	%Subtitle.text = subtitle
 
 func _on_cancel_button_pressed() -> void:
-	close.emit(null)
+	closed.emit({})

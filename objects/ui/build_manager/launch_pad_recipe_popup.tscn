@@ -1,29 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://h35ewf03pur5"]
+[gd_scene load_steps=5 format=3 uid="uid://h35ewf03pur5"]
 
 [ext_resource type="PackedScene" uid="uid://11ur7mtmo2rn" path="res://objects/ui/build_manager/base_popup.tscn" id="1_7ie3x"]
-[ext_resource type="PackedScene" uid="uid://cheh1dak3vjjt" path="res://objects/ui/build_manager/recipe_item.tscn" id="2_v0prt"]
-[ext_resource type="Texture2D" uid="uid://b2qcqcgb1fqoc" path="res://sprites/items/ore.tres" id="3_fqoq7"]
-[ext_resource type="Texture2D" uid="uid://bj2o48xnj06f8" path="res://sprites/items/crystal.tres" id="4_1qhuf"]
-[ext_resource type="Texture2D" uid="uid://cuj2sot1ws2ri" path="res://sprites/items/water.tres" id="5_dfs7d"]
+[ext_resource type="Script" path="res://objects/ui/build_manager/launch_pad_recipe_popup.gd" id="2_d8osi"]
+[ext_resource type="PackedScene" uid="uid://cheh1dak3vjjt" path="res://objects/ui/build_manager/recipe_item.tscn" id="2_g27pd"]
+[ext_resource type="Texture2D" uid="uid://b2qcqcgb1fqoc" path="res://sprites/items/ore.tres" id="3_b3mew"]
 
 [node name="LaunchPadRecipePopup" instance=ExtResource("1_7ie3x")]
-title = "Landing pad"
-subtitle = "Select which resource you want to deliver to this landing pad"
+script = ExtResource("2_d8osi")
 
-[node name="HBoxContainer" parent="MarginContainer/VBoxContainer" index="2"]
-theme_override_constants/h_separation = 32
-
-[node name="Minerals" parent="MarginContainer/VBoxContainer/HBoxContainer" index="0" instance=ExtResource("2_v0prt")]
+[node name="RecipesList" type="HBoxContainer" parent="HBoxContainer/MarginContainer/VBoxContainer" index="2"]
+unique_name_in_owner = true
 layout_mode = 2
-recipe_name = "Minerals delivery"
-icon = ExtResource("3_fqoq7")
 
-[node name="Crystals" parent="MarginContainer/VBoxContainer/HBoxContainer" index="1" instance=ExtResource("2_v0prt")]
+[node name="RecipeItem" parent="HBoxContainer/MarginContainer/VBoxContainer/RecipesList" index="0" instance=ExtResource("2_g27pd")]
 layout_mode = 2
-recipe_name = "Crystals delivery"
-icon = ExtResource("4_1qhuf")
+recipe_name = "Ore delivery x50"
+icon = ExtResource("3_b3mew")
 
-[node name="Water" parent="MarginContainer/VBoxContainer/HBoxContainer" index="2" instance=ExtResource("2_v0prt")]
+[node name="RecipeItem2" parent="HBoxContainer/MarginContainer/VBoxContainer/RecipesList" index="1" instance=ExtResource("2_g27pd")]
 layout_mode = 2
-recipe_name = "Water delivery"
-icon = ExtResource("5_dfs7d")

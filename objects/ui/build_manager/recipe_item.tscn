@@ -16,5 +16,7 @@ stretch_mode = 3
 [node name="Label" type="Label" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Ore delivery"
+text = "Minerals delivery x50"
 horizontal_alignment = 1
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

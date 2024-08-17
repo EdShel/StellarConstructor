@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3wsqsjek417k"]
+[gd_scene load_steps=2 format=3 uid="uid://c3wsqsjek417k"]
 
 [ext_resource type="Script" path="res://objects/ui/build_manager/build_manager.gd" id="1_xtbb0"]
-[ext_resource type="PackedScene" uid="uid://h35ewf03pur5" path="res://objects/ui/build_manager/launch_pad_recipe_popup.tscn" id="2_pe81y"]
 
 [node name="BuildManager" type="HBoxContainer"]
 anchors_preset = 15
@@ -13,10 +12,8 @@ mouse_filter = 2
 alignment = 1
 script = ExtResource("1_xtbb0")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="PopupContainer" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
 alignment = 1
-
-[node name="LaunchPadRecipePopup" parent="VBoxContainer" instance=ExtResource("2_pe81y")]
-layout_mode = 2
