@@ -11,6 +11,6 @@ func get_count() -> int:
 
 
 func _on_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if _count > 0:
-			SC.toolbar_item_pressed.emit(name)
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		SC.toolbar_item_pressed.emit(name)
+		accept_event()
