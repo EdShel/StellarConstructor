@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://3x5p463gkolq"]
+
+[ext_resource type="Texture2D" uid="uid://5mdmk33brvry" path="res://sprites/statuses/no_power.png" id="1_22x65"]
+
+[node name="NoPower" type="HBoxContainer"]
+
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_22x65")
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 2
+offset_left = 36.0
+offset_top = 6.0
+offset_right = 113.0
+offset_bottom = 25.0
+text = "Low power production"

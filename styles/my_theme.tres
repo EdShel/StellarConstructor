@@ -1,7 +1,23 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://ddbty3fq0rlfj"]
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://ddbty3fq0rlfj"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_rpgg4"]
 color = Color(0.32549, 0.0745098, 0.32549, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_imb8p"]
+bg_color = Color(0.31155, 0.214696, 0.31148, 1)
+corner_radius_top_left = 999
+corner_radius_top_right = 999
+corner_radius_bottom_right = 999
+corner_radius_bottom_left = 999
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_87vhq"]
+bg_color = Color(0.294118, 0.411765, 0.184314, 1)
+corner_radius_top_left = 999
+corner_radius_top_right = 999
+corner_radius_bottom_right = 999
+corner_radius_bottom_left = 999
+
 [resource]
 HSeparator/styles/separator = SubResource("StyleBoxLine_rpgg4")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_imb8p")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_87vhq")

@@ -23,7 +23,10 @@ func handle_show_build_tooltip(item_type: String, node: Node2D) -> void:
 	
 	if item_type == "landing_pad":
 		active_tooltip_control = preload("res://objects/ui/build_tooltips/landing_pad_build_tooltip.tscn").instantiate()
-		active_tooltip_control.landing_pad = node 
+		active_tooltip_control.landing_pad = node
+	elif item_type == "factory":
+		active_tooltip_control = preload("res://objects/ui/build_tooltips/factory_build_tooltip.tscn").instantiate()
+		active_tooltip_control.factory = node
 	
 	if not active_tooltip_control:
 		return

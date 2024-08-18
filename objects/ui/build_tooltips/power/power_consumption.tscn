@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjqk8sp3b1gep"]
+
+[ext_resource type="Texture2D" uid="uid://bmqdslv8uwc7k" path="res://sprites/items/power.tres" id="1_0e2am"]
+[ext_resource type="Script" path="res://objects/ui/build_tooltips/power/power_consumption.gd" id="1_d8xb4"]
+
+[node name="PowerConsumption" type="HBoxContainer"]
+script = ExtResource("1_d8xb4")
+
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_0e2am")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="PowerConsumption" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Consumes"
+
+[node name="Value" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "5W"

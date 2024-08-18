@@ -1,4 +1,5 @@
 extends Node2D
+class_name Factory
 
 @export var power_consumption = 4
 var no_power: Node2D = null
@@ -16,8 +17,14 @@ func _exit_tree() -> void:
 	SC.increase_power_consumption.emit(-power_consumption)
 
 func _process(delta: float) -> void:
-	if !recipe or crafting_state:
+	if !recipe or no_power:
 		return
+		
+	if crafting_state:
+		crafting_state.time_spent += delta
+		if crafting_state.time_spent >= crafting_state.recipe.crafting_duration_seconds:
+			complete_crafting()
+			crafting_state = null
 	
 	if not have_enough_ingredients():
 		return
@@ -26,8 +33,6 @@ func _process(delta: float) -> void:
 		inventory.increase(ingredient.item, -ingredient.count)
 	
 	crafting_state = CraftingState.new(recipe)
-	%CraftingAnimation.speed_scale = 1.0 / recipe.crafting_duration_seconds
-	%CraftingAnimation.play("craft")
 
 func have_enough_ingredients() -> bool:
 	for ingredient in recipe.ingredients:
@@ -37,6 +42,7 @@ func have_enough_ingredients() -> bool:
 	return true
 
 func complete_crafting() -> void:
+	var recipe = crafting_state.recipe
 	var is_toolbelt_item = (
 		recipe.result_item == "piston"
 		or recipe.result_item == "solar"
@@ -50,9 +56,6 @@ func complete_crafting() -> void:
 		return
 	
 	inventory.increase(recipe.result_item, recipe.result_count)
-	
-func _on_crafting_animation_animation_finished(anim_name: StringName) -> void:
-	crafting_state = null
 	
 func get_item_to_shoot() -> String:
 	if not recipe:
@@ -82,6 +85,7 @@ func update_power_status() -> void:
 
 class CraftingState:
 	var recipe: FactoryRecipe
+	var time_spent: float = 0.0
 	
 	func _init(recipe: FactoryRecipe) -> void:
 		self.recipe = recipe

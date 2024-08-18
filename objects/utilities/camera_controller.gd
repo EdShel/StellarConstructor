@@ -47,7 +47,7 @@ func update_zoom(new_zoom: float, event: InputEventMouseButton) -> void:
 		var delta = event.position - drag_start_position
 		position = camera_drag_start_position - delta / zoom.x
 	
-	var zoom_range = zoom_levels.front() - zoom_levels.back()
+	var zoom_range = zoom_levels.back() - zoom_levels.front()
 	var volume = new_zoom / zoom_range
 	var sfx = AudioServer.get_bus_index("SFX_Env")
 	AudioServer.set_bus_volume_db(sfx, linear_to_db(volume))

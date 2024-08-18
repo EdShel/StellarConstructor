@@ -6,10 +6,7 @@ func _ready() -> void:
 	if !recipe:
 		return
 	%Icon.texture = load("res://sprites/items/%s.tres" % recipe.result_item)
-	if recipe.result_count != 1:
-		%Title.text = "%s - x%s" % [recipe.title, recipe.result_count]
-	else:
-		%Title.text = recipe.title
+	%Title.text = recipe.title
 	%Description.text = recipe.description
 	
 	var i = 0

@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://cbrn17chxrb4c"]
+
+[ext_resource type="PackedScene" uid="uid://bc5n2wpdgdgd8" path="res://objects/ui/build_tooltips/base_tooltip.tscn" id="1_ngvf5"]
+[ext_resource type="Script" path="res://objects/ui/build_tooltips/factory_build_tooltip.gd" id="2_fqyne"]
+[ext_resource type="Texture2D" uid="uid://b2qcqcgb1fqoc" path="res://sprites/items/ore.tres" id="2_xar7t"]
+[ext_resource type="PackedScene" uid="uid://bjqk8sp3b1gep" path="res://objects/ui/build_tooltips/power/power_consumption.tscn" id="4_dgkdh"]
+[ext_resource type="PackedScene" uid="uid://dvoy7rycpxh0m" path="res://objects/ui/build_tooltips/inventory/build_inventory.tscn" id="5_0csvm"]
+[ext_resource type="PackedScene" uid="uid://3x5p463gkolq" path="res://objects/ui/build_tooltips/power/no_power.tscn" id="5_4hmx1"]
+
+[node name="FactoryBuildTooltip" instance=ExtResource("1_ngvf5")]
+script = ExtResource("2_fqyne")
+
+[node name="Label" parent="VBoxContainer" index="0"]
+text = "Space Factory"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer" index="2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer" index="0"]
+layout_mode = 2
+text = "Crafting recipe"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer" index="1"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="VBoxContainer/VBoxContainer/HBoxContainer" index="0"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="RecipeIcon" type="TextureRect" parent="VBoxContainer/VBoxContainer/HBoxContainer/Control" index="0"]
+unique_name_in_owner = true
+layout_mode = 1
+offset_right = 64.0
+offset_bottom = 64.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_xar7t")
+
+[node name="RecipeName" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer" index="1"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Minerals"
+
+[node name="CraftingProgress" type="ProgressBar" parent="VBoxContainer/VBoxContainer" index="2"]
+unique_name_in_owner = true
+layout_mode = 2
+value = 15.28
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer" index="3"]
+layout_mode = 2
+
+[node name="PowerConsumption" parent="VBoxContainer" index="4" instance=ExtResource("4_dgkdh")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="NoPower" parent="VBoxContainer" index="5" instance=ExtResource("5_4hmx1")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HSeparator3" type="HSeparator" parent="VBoxContainer" index="6"]
+layout_mode = 2
+
+[node name="BuildInventory" parent="VBoxContainer" index="7" instance=ExtResource("5_0csvm")]
+unique_name_in_owner = true
+layout_mode = 2

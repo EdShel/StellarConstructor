@@ -86,7 +86,7 @@ static func create_recipes() -> Array[FactoryRecipe]:
 			"glass",          # result
 			5,                # count
 			0.5,              # duration
-			"Glass",
+			"Glass x5",
 			"Intermediate resource required for Solar Panels. If you expect pistons to break it, then don't - this glass is very strong."
 		),
 		FactoryRecipe.new(
