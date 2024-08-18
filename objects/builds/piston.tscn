@@ -73,7 +73,7 @@ _data = {
 "shoot": SubResource("Animation_j8lmo")
 }
 
-[node name="Piston" type="Node2D"]
+[node name="Piston" type="Node2D" groups=["build"]]
 script = ExtResource("1_q3k6m")
 
 [node name="Floor" type="Sprite2D" parent="."]

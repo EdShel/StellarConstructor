@@ -96,6 +96,8 @@ func handle_toolbar_item_place(data: Dictionary) -> void:
 	%Toolbar.init_inventory(inventory.items)
 	if inventory.get_inventory_item(_ghost_node_item)["count"] <= 0:
 		clear_ghost()
+	
+	SC.recompute_space_platform_size.emit()
 
 func clear_ghost():
 	if !_ghost_node:

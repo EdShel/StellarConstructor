@@ -1,13 +1,12 @@
-[gd_scene load_steps=17 format=3 uid="uid://bnrh75aysmd6v"]
+[gd_scene load_steps=16 format=3 uid="uid://bnrh75aysmd6v"]
 
 [ext_resource type="Script" path="res://objects/game.gd" id="1_86h5b"]
 [ext_resource type="Script" path="res://objects/utilities/camera_controller.gd" id="1_bl32n"]
 [ext_resource type="Texture2D" uid="uid://byyalp7ylos1v" path="res://sprites/background/stars.png" id="2_8rblh"]
 [ext_resource type="PackedScene" uid="uid://cm7qf6mbektuu" path="res://objects/build_grid/build_grid.tscn" id="3_pjmpo"]
+[ext_resource type="PackedScene" uid="uid://be7n1h67dsqhj" path="res://objects/visuals/space_platform.tscn" id="4_2twcc"]
 [ext_resource type="PackedScene" uid="uid://csmg87yqk0t47" path="res://objects/ui/toolbar/toolbar.tscn" id="4_ot15t"]
-[ext_resource type="PackedScene" uid="uid://dp2g5mne7eoag" path="res://objects/utilities/nine_patch_sprite_2d.tscn" id="5_gvu61"]
 [ext_resource type="PackedScene" uid="uid://dwjelvpqhhdju" path="res://objects/ui/power_indicator/power_indicator.tscn" id="5_s0rco"]
-[ext_resource type="Texture2D" uid="uid://cbgl05suevv4s" path="res://sprites/background/space_platform.png" id="6_2tjbw"]
 [ext_resource type="PackedScene" uid="uid://c3wsqsjek417k" path="res://objects/ui/build_manager/build_manager.tscn" id="6_76ayv"]
 [ext_resource type="PackedScene" uid="uid://b0y7cwbq2t5ty" path="res://objects/ui/build_tooltips/build_tooltip_manager.tscn" id="7_wkbhf"]
 
@@ -69,14 +68,10 @@ anim_speed_max = 1.0
 unique_name_in_owner = true
 script = ExtResource("1_bl32n")
 
+[node name="SpacePlatform" parent="." instance=ExtResource("4_2twcc")]
+
 [node name="BuildGrid" parent="." instance=ExtResource("3_pjmpo")]
 unique_name_in_owner = true
-position = Vector2(159, 84)
-
-[node name="NinePatchSprite2d" parent="BuildGrid" instance=ExtResource("5_gvu61")]
-position = Vector2(81.4998, 43.0001)
-scale = Vector2(1.84896, 1.4375)
-texture = ExtResource("6_2tjbw")
 
 [node name="GameUI" type="CanvasLayer" parent="."]
 

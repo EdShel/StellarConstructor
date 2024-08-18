@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://objects/builds/landing_pad.gd" id="1_orncb"]
 [ext_resource type="PackedScene" uid="uid://o506ib7yigid" path="res://objects/builds/utilities/build_collider.tscn" id="2_ce11o"]
 
-[node name="LandingPad" type="Node2D" groups=["landing_pads"]]
+[node name="LandingPad" type="Node2D" groups=["build", "landing_pads"]]
 script = ExtResource("1_orncb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

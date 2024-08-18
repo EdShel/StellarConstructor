@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ctw7m0qjk8ixb" path="res://sprites/builds/factory.tres" id="1_y0182"]
 [ext_resource type="PackedScene" uid="uid://o506ib7yigid" path="res://objects/builds/utilities/build_collider.tscn" id="2_dcm46"]
 
-[node name="Factory" type="Node2D"]
+[node name="Factory" type="Node2D" groups=["build"]]
 script = ExtResource("1_60gtp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

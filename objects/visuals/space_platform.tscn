@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://be7n1h67dsqhj"]
+
+[ext_resource type="Script" path="res://objects/visuals/space_platform.gd" id="1_q221d"]
+[ext_resource type="PackedScene" uid="uid://dp2g5mne7eoag" path="res://objects/utilities/nine_patch_sprite_2d.tscn" id="1_x4coo"]
+[ext_resource type="Texture2D" uid="uid://cbgl05suevv4s" path="res://sprites/background/space_platform.png" id="2_7hpr7"]
+
+[node name="SpacePlatform" type="Node2D"]
+script = ExtResource("1_q221d")
+
+[node name="Sprite" parent="." instance=ExtResource("1_x4coo")]
+unique_name_in_owner = true
+scale = Vector2(1.84896, 1.4375)
+texture = ExtResource("2_7hpr7")
