@@ -81,7 +81,6 @@ texture = ExtResource("2_q31hk")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-scale = Vector2(0.739986, 1)
 texture = ExtResource("3_un1db")
 
 [node name="BuildCollider" parent="." instance=ExtResource("2_egx0n")]
