@@ -37,6 +37,18 @@ func have_enough_ingredients() -> bool:
 	return true
 
 func complete_crafting() -> void:
+	var is_toolbelt_item = (
+		recipe.result_item == "piston"
+		or recipe.result_item == "solar"
+		or recipe.result_item == "factory"
+		or recipe.result_item == "landing_pad")
+	if is_toolbelt_item:
+		SC.increase_inventory_item.emit(recipe.result_item, recipe.result_count)
+		return
+	if recipe.result_item == "mining":
+		SC.increase_mining_speed.emit()
+		return
+	
 	inventory.increase(recipe.result_item, recipe.result_count)
 	
 func _on_crafting_animation_animation_finished(anim_name: StringName) -> void:

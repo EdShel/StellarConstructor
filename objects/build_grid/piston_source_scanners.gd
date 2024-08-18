@@ -1,0 +1,37 @@
+extends Node2D
+
+signal direction_change_needed(direction: Piston.Direction)
+
+var is_monitoring_enabled: bool = true
+
+func set_monitoring_enabled(is_enabled: bool) -> void:
+	is_monitoring_enabled = is_enabled
+	for area: Area2D in get_children():
+		area.monitoring = is_enabled
+
+func _physics_process(delta: float) -> void:
+	if !is_monitoring_enabled:
+		return
+	
+	var preferred_direction = "None"
+	for area: Area2D in get_children():
+		var areas = area.get_overlapping_areas()
+		var has_inventory = areas.any(func(a: Area2D) -> bool: return !!a.get_parent().get("inventory"))
+		if has_inventory:
+			if preferred_direction == "None":
+				preferred_direction = area.name
+				continue
+			preferred_direction = "Not sure"
+	
+	if preferred_direction == "Up":
+		direction_change_needed.emit(Piston.Direction.DOWN)
+		return
+	if preferred_direction == "Down":
+		direction_change_needed.emit(Piston.Direction.UP)
+		return
+	if preferred_direction == "Left":
+		direction_change_needed.emit(Piston.Direction.RIGHT)
+		return
+	if preferred_direction == "Right":
+		direction_change_needed.emit(Piston.Direction.LEFT)
+		return

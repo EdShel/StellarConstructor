@@ -11,6 +11,12 @@ func find_inventory_item(item: String) -> Dictionary:
 		return found_items[0]
 	return {}
 
+func get_inventory_item(item: String) -> Dictionary:
+	var found_items = items.filter(func(i: Dictionary): return i["item"] == item)
+	if found_items.size() > 0:
+		return found_items[0]
+	return { "item": item, "count": 0 }
+
 func increase(item: String, amount: int) -> void:
 	var entry = find_inventory_item(item)
 	if entry.is_empty():

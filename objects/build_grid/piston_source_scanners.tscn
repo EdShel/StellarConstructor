@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwucrrfanen78"]
+
+[ext_resource type="Script" path="res://objects/build_grid/piston_source_scanners.gd" id="1_u24pl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aamir"]
+size = Vector2(30, 30)
+
+[node name="PistonSourceScanners" type="Node2D"]
+script = ExtResource("1_u24pl")
+
+[node name="Up" type="Area2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -64)
+input_pickable = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Up"]
+shape = SubResource("RectangleShape2D_aamir")
+
+[node name="Down" type="Area2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, 64)
+input_pickable = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Down"]
+shape = SubResource("RectangleShape2D_aamir")
+
+[node name="Left" type="Area2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-64, 0)
+input_pickable = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left"]
+shape = SubResource("RectangleShape2D_aamir")
+
+[node name="Right" type="Area2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(64, 0)
+input_pickable = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right"]
+shape = SubResource("RectangleShape2D_aamir")

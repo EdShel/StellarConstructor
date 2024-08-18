@@ -5,6 +5,8 @@ extends Node2D
 
 var collisions_count: int = 0
 var collision_safe_padding_pixels = 4
+var item_type: String = "landing_pad"
+var direction: Piston.Direction = Piston.Direction.RIGHT
 
 func _ready() -> void:
 	pass # Replace with function body.
@@ -26,21 +28,32 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		get_viewport().set_input_as_handled()
 		if collisions_count <= 0:
-			SC.toolbar_item_place.emit(global_position)
-		
+			SC.toolbar_item_place.emit({
+				"position": global_position,
+				"direction": direction,
+			})
+	elif event is InputEventKey:
+		if event.keycode == KEY_ESCAPE:
+			get_viewport().set_input_as_handled()
+			SC.toolbar_item_dismiss.emit()
 
-func update(sprite: AtlasTexture):
+func update(item_type: String):
+	self.item_type = item_type
+	
+	var sprite: AtlasTexture = load("res://sprites/builds/%s.tres" % item_type)
 	var size_pixels = sprite.region.size.x
 	var size_grid = ceil(size_pixels / 64)
 	%Sprite2D.texture = sprite
 	
-	%CollisionShape2D.shape.size = sprite.region.size - Vector2(2 * collision_safe_padding_pixels, 2 * collision_safe_padding_pixels)
-
+	%CollisionShape2D.shape.size = sprite.region.size - Vector2(2 * collision_safe_padding_pixels, 2 * collision_safe_padding_pixels)	
+	%PistonSourceScanners.set_monitoring_enabled(item_type == "piston")
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	collisions_count += 1
-	
-
 
 func _on_area_2d_area_exited(area: Area2D) -> void:
 	collisions_count -= 1
+
+func _on_piston_source_scanners_direction_change_needed(direction: Piston.Direction) -> void:
+	self.direction = direction
+	%Sprite2D.texture = Piston.get_piston_texture(direction)

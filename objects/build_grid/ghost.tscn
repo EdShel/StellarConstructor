@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://v3rf4j4hmnbb"]
+[gd_scene load_steps=5 format=3 uid="uid://v3rf4j4hmnbb"]
 
 [ext_resource type="Texture2D" uid="uid://qcw04lpx4sy2" path="res://sprites/builds/landing_pad.tres" id="1_m28ua"]
 [ext_resource type="Script" path="res://objects/build_grid/ghost.gd" id="1_sx6ga"]
+[ext_resource type="PackedScene" uid="uid://cwucrrfanen78" path="res://objects/build_grid/piston_source_scanners.tscn" id="3_yy4f0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8wrq8"]
 size = Vector2(64, 64)
@@ -26,5 +27,9 @@ monitorable = false
 unique_name_in_owner = true
 shape = SubResource("RectangleShape2D_8wrq8")
 
+[node name="PistonSourceScanners" parent="." instance=ExtResource("3_yy4f0")]
+unique_name_in_owner = true
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="direction_change_needed" from="PistonSourceScanners" to="." method="_on_piston_source_scanners_direction_change_needed"]

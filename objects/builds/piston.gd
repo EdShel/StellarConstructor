@@ -45,7 +45,7 @@ func update_direction(new_direction: Direction) -> void:
 	_direction = new_direction
 	%SourceScanner.position = get_source_scanner_position()
 	shoot_direction = get_shoot_direction()
-	%Sprite2D.texture = get_source_scanner_texture()
+	%Sprite2D.texture = get_piston_texture(new_direction)
 
 func get_source_scanner_position() -> Vector2:
 	if direction == Direction.LEFT:
@@ -65,7 +65,7 @@ func get_shoot_direction() -> Vector2:
 		return Vector2(0, -1)
 	return Vector2(0, 1)
 	
-func get_source_scanner_texture() -> Texture2D:
+static func get_piston_texture(direction: Direction) -> Texture2D:
 	if direction == Direction.LEFT:
 		return load("res://sprites/builds/piston_left.tres")
 	if direction == Direction.RIGHT:

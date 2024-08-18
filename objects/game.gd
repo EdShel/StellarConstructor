@@ -4,7 +4,7 @@ class_name Game
 var _ghost_node: Node2D = null
 var _ghost_node_item: String = ""
 
-var inventory: Array[Dictionary] = [
+var inventory: Inventory = Inventory.new([
 	{
 		"item": "solar",
 		"count": 5,
@@ -21,7 +21,7 @@ var inventory: Array[Dictionary] = [
 		"item": "landing_pad",
 		"count": 3,
 	},
-]
+])
 
 var power_goal = 50
 var power_production = 0
@@ -34,11 +34,13 @@ var water_miner: ResourceMiner
 func _enter_tree() -> void:
 	SC.connect("toolbar_item_pressed", handle_toolbar_item_pressed)
 	SC.connect("toolbar_item_place", handle_toolbar_item_place)
+	SC.connect("toolbar_item_dismiss", clear_ghost)
 	
 	SC.connect("increase_power_production", handle_power_production_increase)
 	SC.connect("increase_power_consumption", handle_power_consumption_increase)
 	
 	SC.connect("increase_inventory_item", handle_increase_inventory_item)
+	SC.connect("increase_mining_speed", handle_increase_mining_speed)
 	
 	ore_miner = ResourceMiner.new("ore")
 	crystal_miner = ResourceMiner.new("crystal")
@@ -47,7 +49,7 @@ func _enter_tree() -> void:
 	SC.set_game(self)
 
 func _ready() -> void:
-	%Toolbar.init_inventory(inventory)
+	%Toolbar.init_inventory(inventory.items)
 
 func _exit_tree() -> void:
 	SC.set_game(null)
@@ -63,7 +65,7 @@ func handle_toolbar_item_pressed(item_type: String) -> void:
 		clear_ghost()
 		return
 	
-	var inventory_item = find_inventory_item(item_type)
+	var inventory_item = inventory.get_inventory_item(item_type)
 	if inventory_item["count"] <= 0:
 		return
 	
@@ -71,25 +73,27 @@ func handle_toolbar_item_pressed(item_type: String) -> void:
 		_ghost_node = load("res://objects/build_grid/ghost.tscn").instantiate()
 		%BuildGrid.add_child(_ghost_node)
 	
-	var sprite: AtlasTexture = load("res://sprites/builds/%s.tres" % item_type)
-	_ghost_node.update(sprite)
+	_ghost_node.update(item_type)
 	_ghost_node_item = item_type
 	
 	%Camera2D.is_drag_allowed = false
 
-func handle_toolbar_item_place(at: Vector2) -> void:
-	var inventory_item = find_inventory_item(_ghost_node_item)
-	if !inventory_item:
-		printerr("Placing without active ghost")
+func handle_toolbar_item_place(data: Dictionary) -> void:
+	var inventory_item = inventory.get_inventory_item(_ghost_node_item)
+	if inventory_item["count"] < 1:
+		printerr("No item to place")
+		clear_ghost()
 		return
 	
 	var building: Node2D = load("res://objects/builds/%s.tscn" % _ghost_node_item).instantiate()
+	if _ghost_node_item == "piston":
+		building.direction = data["direction"]
 	%BuildGrid.add_child(building)
-	building.global_position = at
+	building.global_position = data["position"]
 	
-	inventory_item["count"] -= 1
-	%Toolbar.init_inventory(inventory)
-	if inventory_item["count"] <= 0:
+	inventory.increase(_ghost_node_item, -1)
+	%Toolbar.init_inventory(inventory.items)
+	if inventory.get_inventory_item(_ghost_node_item)["count"] <= 0:
 		clear_ghost()
 
 func clear_ghost():
@@ -100,9 +104,6 @@ func clear_ghost():
 	_ghost_node_item = ""
 	%Camera2D.is_drag_allowed = true
 
-func find_inventory_item(item: String) -> Dictionary:
-	return inventory.filter(func(i: Dictionary): return i["item"] == item).front()
-
 func handle_power_production_increase(amount: int) -> void:
 	power_production += amount
 	SC.power_stats_changed.emit()
@@ -112,10 +113,13 @@ func handle_power_consumption_increase(amount: int) -> void:
 	SC.power_stats_changed.emit()
 
 func handle_increase_inventory_item(item_type: String, amount: int) -> void:
-	var item = find_inventory_item(item_type)
-	item["count"] += amount
-	%Toolbar.init_inventory(inventory)
+	inventory.increase(item_type, amount)
+	%Toolbar.init_inventory(inventory.items)
 
+func handle_increase_mining_speed():
+	ore_miner.mining_rate_per_sec *= 2.0
+	crystal_miner.mining_rate_per_sec *= 2.0
+	water_miner.mining_rate_per_sec *= 2.0
 
 class ResourceMiner:
 	var planet_buffer: float = 0.0
