@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://5uc4xdpqaau4"]
+
+[ext_resource type="PackedScene" uid="uid://bc5n2wpdgdgd8" path="res://objects/ui/build_tooltips/base_tooltip.tscn" id="1_74k0r"]
+[ext_resource type="Script" path="res://objects/ui/build_tooltips/piston_build_tooltip.gd" id="2_hfy8b"]
+[ext_resource type="PackedScene" uid="uid://bjqk8sp3b1gep" path="res://objects/ui/build_tooltips/power/power_consumption.tscn" id="3_2f77u"]
+[ext_resource type="PackedScene" uid="uid://3x5p463gkolq" path="res://objects/ui/build_tooltips/power/no_power.tscn" id="4_n16ee"]
+[ext_resource type="Texture2D" uid="uid://bax6lebtyg1xh" path="res://sprites/statuses/warning.png" id="5_88cfl"]
+
+[node name="PistonBuildTooltip" instance=ExtResource("1_74k0r")]
+script = ExtResource("2_hfy8b")
+
+[node name="Label" parent="VBoxContainer" index="0"]
+text = "Gravity Piston"
+
+[node name="PowerConsumption" parent="VBoxContainer" index="2" instance=ExtResource("3_2f77u")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="NoPower" parent="VBoxContainer" index="3" instance=ExtResource("4_n16ee")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="NoSource" type="HBoxContainer" parent="VBoxContainer" index="4"]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 1
+
+[node name="Control" type="Control" parent="VBoxContainer/NoSource" index="0"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/NoSource/Control" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 3.0
+offset_right = 31.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_88cfl")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/NoSource" index="1"]
+layout_mode = 2
+text = "Must be connected to a Landing Pad or a Space Factory
+from behind to shoot items from them."

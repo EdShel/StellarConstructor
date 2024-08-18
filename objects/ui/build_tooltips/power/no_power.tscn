@@ -15,10 +15,6 @@ offset_bottom = 40.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_22x65")
 
-[node name="Label" type="Label" parent="Control"]
+[node name="Label" type="Label" parent="."]
 layout_mode = 2
-offset_left = 36.0
-offset_top = 6.0
-offset_right = 113.0
-offset_bottom = 25.0
 text = "Low power production"
