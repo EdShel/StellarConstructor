@@ -77,6 +77,7 @@ func handle_toolbar_item_pressed(item_type: String) -> void:
 	_ghost_node_item = item_type
 	
 	%Camera2D.is_drag_allowed = false
+	SC.enable_no_tooltip_mode.emit(true)
 
 func handle_toolbar_item_place(data: Dictionary) -> void:
 	var inventory_item = inventory.get_inventory_item(_ghost_node_item)
@@ -103,6 +104,7 @@ func clear_ghost():
 	_ghost_node = null
 	_ghost_node_item = ""
 	%Camera2D.is_drag_allowed = true
+	SC.enable_no_tooltip_mode.emit(false)
 
 func handle_power_production_increase(amount: int) -> void:
 	power_production += amount

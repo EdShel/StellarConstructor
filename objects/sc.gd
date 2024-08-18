@@ -19,6 +19,7 @@ signal open_build(item_type: String, node: Node2D)
 
 signal show_build_tooltip(item_type: String, node: Node2D)
 signal hide_build_tooltip(item_type: String, node: Node2D)
+signal enable_no_tooltip_mode(enable: bool)
 
 func set_game(new_game: Game) -> void:
 	game = new_game
