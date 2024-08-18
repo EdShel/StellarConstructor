@@ -12,6 +12,7 @@ var no_recipe: Node2D = null
 
 func _ready() -> void:
 	update_recipe(recipe)
+	%AnimationPlayer.play("landing")
 
 func update_recipe(new_recipe: Dictionary) -> void:
 	_recipe = new_recipe
