@@ -1,15 +1,69 @@
-[gd_scene load_steps=8 format=3 uid="uid://bnrh75aysmd6v"]
+[gd_scene load_steps=17 format=3 uid="uid://bnrh75aysmd6v"]
 
 [ext_resource type="Script" path="res://objects/game.gd" id="1_86h5b"]
 [ext_resource type="Script" path="res://objects/utilities/camera_controller.gd" id="1_bl32n"]
+[ext_resource type="Texture2D" uid="uid://byyalp7ylos1v" path="res://sprites/background/stars.png" id="2_8rblh"]
 [ext_resource type="PackedScene" uid="uid://cm7qf6mbektuu" path="res://objects/build_grid/build_grid.tscn" id="3_pjmpo"]
 [ext_resource type="PackedScene" uid="uid://csmg87yqk0t47" path="res://objects/ui/toolbar/toolbar.tscn" id="4_ot15t"]
+[ext_resource type="PackedScene" uid="uid://dp2g5mne7eoag" path="res://objects/utilities/nine_patch_sprite_2d.tscn" id="5_gvu61"]
 [ext_resource type="PackedScene" uid="uid://dwjelvpqhhdju" path="res://objects/ui/power_indicator/power_indicator.tscn" id="5_s0rco"]
+[ext_resource type="Texture2D" uid="uid://cbgl05suevv4s" path="res://sprites/background/space_platform.png" id="6_2tjbw"]
 [ext_resource type="PackedScene" uid="uid://c3wsqsjek417k" path="res://objects/ui/build_manager/build_manager.tscn" id="6_76ayv"]
 [ext_resource type="PackedScene" uid="uid://b0y7cwbq2t5ty" path="res://objects/ui/build_tooltips/build_tooltip_manager.tscn" id="7_wkbhf"]
 
+[sub_resource type="Gradient" id="Gradient_ih6d0"]
+colors = PackedColorArray(0.27451, 0.0627451, 0.27451, 1, 0.245054, 0.0520928, 0.24506, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mwpsg"]
+seed = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kyg7y"]
+width = 1280
+height = 720
+color_ramp = SubResource("Gradient_ih6d0")
+noise = SubResource("FastNoiseLite_mwpsg")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_du0cd"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_56oh3"]
+_data = [Vector2(0, 0.120301), 0.0, 0.0, 0, 0, Vector2(0.763514, 0.441461), 0.0, 0.0, 0, 0, Vector2(1, 0.11681), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_krn3o"]
+offsets = PackedFloat32Array(0, 0.136139, 0.863861, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
 [node name="Game" type="Node2D"]
 script = ExtResource("1_86h5b")
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Sprite2D" type="Sprite2D" parent="Background"]
+position = Vector2(640, 360)
+texture = SubResource("NoiseTexture2D_kyg7y")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Background"]
+material = SubResource("CanvasItemMaterial_du0cd")
+position = Vector2(640, 360)
+amount = 40
+lifetime = 30.0
+preprocess = 30.0
+fixed_fps = 10
+texture = ExtResource("2_8rblh")
+emission_shape = 3
+emission_rect_extents = Vector2(640, 360)
+gravity = Vector2(0, 0)
+angle_max = 360.0
+scale_amount_min = 0.1
+scale_amount_curve = SubResource("Curve_56oh3")
+color_ramp = SubResource("Gradient_krn3o")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 unique_name_in_owner = true
@@ -18,6 +72,11 @@ script = ExtResource("1_bl32n")
 [node name="BuildGrid" parent="." instance=ExtResource("3_pjmpo")]
 unique_name_in_owner = true
 position = Vector2(159, 84)
+
+[node name="NinePatchSprite2d" parent="BuildGrid" instance=ExtResource("5_gvu61")]
+position = Vector2(81.4998, 43.0001)
+scale = Vector2(1.84896, 1.4375)
+texture = ExtResource("6_2tjbw")
 
 [node name="GameUI" type="CanvasLayer" parent="."]
 

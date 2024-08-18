@@ -9,7 +9,7 @@ func set_monitoring_enabled(is_enabled: bool) -> void:
 	for area: Area2D in get_children():
 		area.monitoring = is_enabled
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if !is_monitoring_enabled:
 		return
 	

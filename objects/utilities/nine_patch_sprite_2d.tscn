@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://dp2g5mne7eoag"]
+
+[ext_resource type="Shader" path="res://objects/utilities/nine_patch_sprite_2d.gdshader" id="1_6o5cf"]
+[ext_resource type="Script" path="res://objects/utilities/nine_patch_sprite_2d.gd" id="1_63mcp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_07xrk"]
+shader = ExtResource("1_6o5cf")
+shader_parameter/iResolution = Vector2(353, 263)
+shader_parameter/padding = 64.0
+
+[node name="NinePatchSprite2d" type="Sprite2D"]
+material = SubResource("ShaderMaterial_07xrk")
+script = ExtResource("1_63mcp")
