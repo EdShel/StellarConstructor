@@ -19,20 +19,28 @@ func _exit_tree() -> void:
 func _process(delta: float) -> void:
 	if !recipe or no_power:
 		return
-		
+	
+	var just_finished_crafting = false
 	if crafting_state:
 		crafting_state.time_spent += delta
 		if crafting_state.time_spent >= crafting_state.recipe.crafting_duration_seconds:
 			complete_crafting()
 			crafting_state = null
+			just_finished_crafting = true
+		else:
+			return
+			
 	
 	if not have_enough_ingredients():
+		if just_finished_crafting:
+			%AnimatedSprite.play("stay")
 		return
 	
 	for ingredient in recipe.ingredients:
 		inventory.increase(ingredient.item, -ingredient.count)
 	
 	crafting_state = CraftingState.new(recipe)
+	%AnimatedSprite.play("work")
 
 func have_enough_ingredients() -> bool:
 	for ingredient in recipe.ingredients:
@@ -42,6 +50,7 @@ func have_enough_ingredients() -> bool:
 	return true
 
 func complete_crafting() -> void:
+	print("Crafting done")
 	var recipe = crafting_state.recipe
 	var is_toolbelt_item = (
 		recipe.result_item == "piston"

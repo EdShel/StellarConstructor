@@ -1,14 +1,79 @@
-[gd_scene load_steps=4 format=3 uid="uid://ct60r41w2k4xk"]
+[gd_scene load_steps=13 format=3 uid="uid://ct60r41w2k4xk"]
 
 [ext_resource type="Script" path="res://objects/builds/factory.gd" id="1_60gtp"]
-[ext_resource type="Texture2D" uid="uid://ctw7m0qjk8ixb" path="res://sprites/builds/factory.tres" id="1_y0182"]
 [ext_resource type="PackedScene" uid="uid://o506ib7yigid" path="res://objects/builds/utilities/build_collider.tscn" id="2_dcm46"]
+[ext_resource type="Texture2D" uid="uid://ctcahalqpavn7" path="res://sprites/builds/factory_anim.png" id="2_kngdx"]
+[ext_resource type="Texture2D" uid="uid://cmkkht63lrq6v" path="res://sprites/builds.png" id="2_ob6mj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aigbo"]
+atlas = ExtResource("2_ob6mj")
+region = Rect2(0, 384, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_juigd"]
+atlas = ExtResource("2_kngdx")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2jtqf"]
+atlas = ExtResource("2_kngdx")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e162x"]
+atlas = ExtResource("2_kngdx")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nor7m"]
+atlas = ExtResource("2_kngdx")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rx2e5"]
+atlas = ExtResource("2_kngdx")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vrwxc"]
+atlas = ExtResource("2_kngdx")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m5pdj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aigbo")
+}],
+"loop": true,
+"name": &"stay",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_juigd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2jtqf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e162x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nor7m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rx2e5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vrwxc")
+}],
+"loop": true,
+"name": &"work",
+"speed": 10.0
+}]
 
 [node name="Factory" type="Node2D" groups=["build"]]
 script = ExtResource("1_60gtp")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_y0182")
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_m5pdj")
+animation = &"stay"
 
 [node name="BuildCollider" parent="." instance=ExtResource("2_dcm46")]
 cell_size = 2
