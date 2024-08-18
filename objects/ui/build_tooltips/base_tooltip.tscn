@@ -14,6 +14,7 @@ font_size = 24
 
 [node name="BaseTooltip" type="PanelContainer"]
 custom_minimum_size = Vector2(300, 300)
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_0kd2j")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]

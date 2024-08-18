@@ -1,4 +1,5 @@
 extends Node2D
+class_name Solar
 
 @export var power_production = 5
 

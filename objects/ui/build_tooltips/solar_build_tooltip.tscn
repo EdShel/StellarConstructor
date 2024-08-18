@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://yc1vyhmebm6h"]
+
+[ext_resource type="PackedScene" uid="uid://bc5n2wpdgdgd8" path="res://objects/ui/build_tooltips/base_tooltip.tscn" id="1_pmx51"]
+[ext_resource type="Script" path="res://objects/ui/build_tooltips/solar_build_tooltip.gd" id="2_bevdw"]
+[ext_resource type="Texture2D" uid="uid://bmqdslv8uwc7k" path="res://sprites/items/power.tres" id="3_rixc6"]
+
+[node name="SolarBuildTooltip" instance=ExtResource("1_pmx51")]
+script = ExtResource("2_bevdw")
+
+[node name="Label" parent="VBoxContainer" index="0"]
+text = "Solar Panel"
+
+[node name="PowerProduction" type="HBoxContainer" parent="VBoxContainer" index="2"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Control" type="Control" parent="VBoxContainer/PowerProduction" index="0"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/PowerProduction/Control" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 3.0
+offset_right = 31.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_rixc6")
+stretch_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PowerProduction" index="1"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/PowerProduction/HBoxContainer" index="0"]
+layout_mode = 2
+text = "Produces"
+
+[node name="PowerProductionLabel" type="Label" parent="VBoxContainer/PowerProduction/HBoxContainer" index="1"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "5W"

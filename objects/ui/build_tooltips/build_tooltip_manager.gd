@@ -30,6 +30,9 @@ func handle_show_build_tooltip(item_type: String, node: Node2D) -> void:
 	elif item_type == "piston":
 		active_tooltip_control = preload("res://objects/ui/build_tooltips/piston_build_tooltip.tscn").instantiate()
 		active_tooltip_control.piston = node
+	elif item_type == "solar":
+		active_tooltip_control = preload("res://objects/ui/build_tooltips/solar_build_tooltip.tscn").instantiate()
+		active_tooltip_control.solar = node
 	
 	if not active_tooltip_control:
 		return
