@@ -11,7 +11,7 @@ var direction: Piston.Direction = Piston.Direction.RIGHT
 func _ready() -> void:
 	pass # Replace with function body.
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if collisions_count > 0:
 		modulate = badColor
 	else:
@@ -48,10 +48,10 @@ func update(item_type: String):
 	%CollisionShape2D.shape.size = sprite.region.size - Vector2(2 * collision_safe_padding_pixels, 2 * collision_safe_padding_pixels)	
 	%PistonSourceScanners.set_monitoring_enabled(item_type == "piston")
 
-func _on_area_2d_area_entered(area: Area2D) -> void:
+func _on_area_2d_area_entered(_area: Area2D) -> void:
 	collisions_count += 1
 
-func _on_area_2d_area_exited(area: Area2D) -> void:
+func _on_area_2d_area_exited(_area: Area2D) -> void:
 	collisions_count -= 1
 
 func _on_piston_source_scanners_direction_change_needed(direction: Piston.Direction) -> void:

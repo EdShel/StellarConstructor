@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://bc5n2wpdgdgd8"]
+
+[ext_resource type="Texture2D" uid="uid://br4q320hpsopn" path="res://sprites/ui/tooltip_background.png" id="1_viokl"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0kd2j"]
+texture = ExtResource("1_viokl")
+texture_margin_left = 64.0
+texture_margin_top = 64.0
+texture_margin_right = 64.0
+texture_margin_bottom = 64.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_hog0c"]
+font_size = 24
+
+[node name="BaseTooltip" type="PanelContainer"]
+custom_minimum_size = Vector2(300, 300)
+theme_override_styles/panel = SubResource("StyleBoxTexture_0kd2j")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Title"
+label_settings = SubResource("LabelSettings_hog0c")
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2

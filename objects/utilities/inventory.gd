@@ -1,5 +1,7 @@
 class_name Inventory
 
+signal changed()
+
 var items: Array[Dictionary] = []
 
 func _init(init_items: Array[Dictionary]) -> void:
@@ -24,5 +26,7 @@ func increase(item: String, amount: int) -> void:
 			"item": item,
 			"count": amount,
 		})
+		changed.emit()
 		return
 	entry["count"] += amount
+	changed.emit()

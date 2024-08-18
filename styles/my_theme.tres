@@ -1,3 +1,7 @@
-[gd_resource type="Theme" format=3 uid="uid://ddbty3fq0rlfj"]
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://ddbty3fq0rlfj"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_rpgg4"]
+color = Color(0.32549, 0.0745098, 0.32549, 1)
 
 [resource]
+HSeparator/styles/separator = SubResource("StyleBoxLine_rpgg4")

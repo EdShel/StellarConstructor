@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvoy7rycpxh0m"]
+
+[ext_resource type="Script" path="res://objects/ui/build_tooltips/inventory/build_inventory.gd" id="1_3br2u"]
+
+[node name="BuildInventory" type="VBoxContainer"]
+theme_override_constants/separation = 8
+script = ExtResource("1_3br2u")
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Inventory"
+
+[node name="Items" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
