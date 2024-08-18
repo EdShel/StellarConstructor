@@ -126,8 +126,9 @@ func handle_increase_mining_speed():
 	water_miner.mining_rate_per_sec *= 2.0
 
 class ResourceMiner:
-	var planet_buffer: float = 0.0
-	var mining_rate_per_sec: float = 10.0
+	var planet_buffer: float = 100.0
+	var planet_buffer_limit: float = 500
+	var mining_rate_per_sec: float = 3.0
 	var item_type: String
 	
 	var previous_round_robin_index = -1
@@ -136,7 +137,8 @@ class ResourceMiner:
 		self.item_type = item_type
 	
 	func process(dt: float) -> void:
-		planet_buffer += dt * mining_rate_per_sec
+		if planet_buffer < planet_buffer_limit:
+			planet_buffer += dt * mining_rate_per_sec
 		try_dump_buffer_to_landing_pad()
 	
 	func try_dump_buffer_to_landing_pad() -> void:
@@ -152,6 +154,8 @@ class ResourceMiner:
 			return
 		self.previous_round_robin_index = wrapi(self.previous_round_robin_index + 1, 0, matching_landing_pads.size())
 		var target_pad = matching_landing_pads[self.previous_round_robin_index]
-		target_pad.inventory.increase(self.item_type, items_to_dump)
+		if target_pad.is_landing_rocket:
+			return
+		target_pad.accept_rocket(self.item_type, items_to_dump)
 		self.planet_buffer -= items_to_dump
 		

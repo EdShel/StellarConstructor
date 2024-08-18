@@ -9,10 +9,10 @@ var recipe: Dictionary:
 	set(value): update_recipe(value)
 
 var no_recipe: Node2D = null
+var is_landing_rocket: bool = false
 
 func _ready() -> void:
 	update_recipe(recipe)
-	%AnimationPlayer.play("landing")
 
 func update_recipe(new_recipe: Dictionary) -> void:
 	_recipe = new_recipe
@@ -38,3 +38,14 @@ func get_item_to_shoot() -> String:
 	if recipe_item.is_empty() or recipe_item["count"] <= 0:
 		return ""
 	return recipe_item["item"]
+
+func accept_rocket(item_type: String, item_count: int) -> void:
+	var rocket = preload("res://objects/visuals/rocket.tscn").instantiate()
+	rocket.offloading.connect(func() -> void:
+		inventory.increase(item_type, item_count)	
+	)
+	rocket.tree_exited.connect(func() -> void:
+		is_landing_rocket = false
+	)
+	%RocketSlot.add_child(rocket)
+	is_landing_rocket = true

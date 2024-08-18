@@ -16,17 +16,19 @@ layout_mode = 2
 
 [node name="RecipeItem" parent="HBoxContainer/MarginContainer/VBoxContainer/RecipesList" index="0" instance=ExtResource("2_g27pd")]
 layout_mode = 2
-recipe_name = "Material delivery x50"
+recipe_name = "Material delivery"
 icon = ExtResource("3_b3mew")
+item_count = 50
 
 [node name="RecipeItem2" parent="HBoxContainer/MarginContainer/VBoxContainer/RecipesList" index="1" instance=ExtResource("2_g27pd")]
 layout_mode = 2
 recipe_name = "Crystal delivery"
 icon = ExtResource("5_yw5ir")
 item_type = "crystal"
+item_count = 100
 
 [node name="RecipeItem3" parent="HBoxContainer/MarginContainer/VBoxContainer/RecipesList" index="2" instance=ExtResource("2_g27pd")]
 layout_mode = 2
-recipe_name = "Water delivery"
+recipe_name = "Liquid Hydrogen"
 icon = ExtResource("6_kpm6o")
 item_type = "water"
