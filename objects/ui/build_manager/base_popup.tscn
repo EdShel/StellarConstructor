@@ -1,6 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://11ur7mtmo2rn"]
+[gd_scene load_steps=5 format=3 uid="uid://11ur7mtmo2rn"]
 
 [ext_resource type="Script" path="res://objects/ui/build_manager/base_popup.gd" id="1_306dy"]
+[ext_resource type="Texture2D" uid="uid://bislcawim670g" path="res://sprites/ui/popup_background.png" id="1_qa1ei"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6tvff"]
+texture = ExtResource("1_qa1ei")
+texture_margin_left = 96.0
+texture_margin_top = 96.0
+texture_margin_right = 96.0
+texture_margin_bottom = 96.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_2o7xv"]
 font_size = 32
@@ -11,6 +19,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_6tvff")
 script = ExtResource("1_306dy")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
