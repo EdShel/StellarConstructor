@@ -1,54 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://c07gusxfwwqyf"]
+[gd_scene load_steps=3 format=3 uid="uid://d1lerhkjp727w"]
 
-[ext_resource type="Texture2D" uid="uid://csidmtq3gi3s1" path="res://sprites/items/circuit.tres" id="1_bf5do"]
-[ext_resource type="Script" path="res://objects/ui/build_manager/factory_recipe_item.gd" id="1_josi8"]
-[ext_resource type="Texture2D" uid="uid://ce5ktf0oc0sqj" path="res://sprites/items/time.tres" id="3_p1w0s"]
+[ext_resource type="Texture2D" uid="uid://csidmtq3gi3s1" path="res://sprites/items/circuit.tres" id="1_jyf4r"]
+[ext_resource type="Script" path="res://objects/ui/build_manager/factory_recipe_item.gd" id="2_jb18m"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_5nd1k"]
-font_size = 20
-
-[node name="FactoryRecipeItem" type="HBoxContainer"]
-script = ExtResource("1_josi8")
-
-[node name="Icon" type="TextureRect" parent="."]
-unique_name_in_owner = true
-layout_mode = 2
-texture = ExtResource("1_bf5do")
-stretch_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 2
-
-[node name="Title" type="Label" parent="VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(400, 0)
-layout_mode = 2
-text = "Title Title Title"
-label_settings = SubResource("LabelSettings_5nd1k")
-autowrap_mode = 2
-
-[node name="Description" type="Label" parent="VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(400, 0)
-layout_mode = 2
-text = "Description Description Description Description Description Description Description Description Description "
-autowrap_mode = 2
-
-[node name="Ingredients" type="HBoxContainer" parent="VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_constants/separation = 32
-
-[node name="Time" type="HBoxContainer" parent="VBoxContainer/Ingredients"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Ingredients/Time"]
-layout_mode = 2
-texture = ExtResource("3_p1w0s")
-
-[node name="Duration" type="Label" parent="VBoxContainer/Ingredients/Time"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "1s"
+[node name="FactoryRecipeItem" type="TextureRect"]
+texture = ExtResource("1_jyf4r")
+script = ExtResource("2_jb18m")
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
