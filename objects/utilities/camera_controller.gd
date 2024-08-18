@@ -2,17 +2,14 @@ extends Camera2D
 
 @export var is_drag_allowed = true
 
-var zoom_sensitivity = 0.1
-var pan_sensitivity = 1.0
-
 var is_dragging: bool = false
 var drag_start_position: Vector2 = Vector2()
 var camera_drag_start_position: Vector2 = Vector2()
 
-var zoom_min: float = 0.05
-var zoom_max: float = 2.0
+var move_speed: float = 800
 
-var move_speed: float = 300
+var zoom_levels: Array[float] = [0.25, 0.5, 0.75, 1, 2, 3]
+var zoom_level_index = 3
 
 func _unhandled_input(event: InputEvent) -> void:
 	if !is_drag_allowed:
@@ -30,18 +27,19 @@ func _unhandled_input(event: InputEvent) -> void:
 				is_dragging = false
 		
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
-			var new_zoom = clamp(zoom.x + zoom_sensitivity, zoom_min, zoom_max)
-			update_zoom(new_zoom, event)
+			zoom_level_index = clamp(zoom_level_index + 1, 0, zoom_levels.size() - 1)
+			update_zoom(zoom_levels[zoom_level_index], event)
 			get_viewport().set_input_as_handled()
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-			var new_zoom = clamp(zoom.x - zoom_sensitivity, zoom_min, zoom_max)
-			update_zoom(new_zoom, event)
+			zoom_level_index = clamp(zoom_level_index - 1, 0, zoom_levels.size() - 1)
+			update_zoom(zoom_levels[zoom_level_index], event)
 			get_viewport().set_input_as_handled()
 
 	elif event is InputEventMouseMotion and is_dragging:
 		var delta = event.position - drag_start_position
 		position = camera_drag_start_position - delta / zoom.x
 		get_viewport().set_input_as_handled()
+		
 
 func update_zoom(new_zoom: float, event: InputEventMouseButton) -> void:
 	zoom = Vector2(new_zoom, new_zoom)
@@ -49,7 +47,12 @@ func update_zoom(new_zoom: float, event: InputEventMouseButton) -> void:
 		var delta = event.position - drag_start_position
 		position = camera_drag_start_position - delta / zoom.x
 	
-	var zoom_range = zoom_max - zoom_min
+	var zoom_range = zoom_levels.front() - zoom_levels.back()
 	var volume = new_zoom / zoom_range
 	var sfx = AudioServer.get_bus_index("SFX_Env")
 	AudioServer.set_bus_volume_db(sfx, linear_to_db(volume))
+
+func _process(delta: float) -> void:
+	var move_dir = Input.get_vector("left", "right", "up", "down")
+	if move_dir != Vector2.ZERO:
+		global_position += move_dir * delta * move_speed / zoom

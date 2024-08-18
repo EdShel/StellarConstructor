@@ -3,6 +3,12 @@ class_name BasePopup
 
 signal closed(result: Dictionary)
 
+func _enter_tree() -> void:
+	SC.enable_no_tooltip_mode.emit(true)
+	
+func _exit_tree() -> void:
+	SC.enable_no_tooltip_mode.emit(false)
+	
 func _on_cancel_button_pressed() -> void:
 	closed.emit({})
 
