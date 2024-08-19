@@ -8,7 +8,7 @@ func _ready() -> void:
 	%SoundSlider.value = db_to_linear(AudioServer.get_bus_volume_db(master_bus)) * 100
 
 func _on_start_clicked() -> void:
-	get_tree().change_scene_to_file("res://objects/game.tscn")
+	get_tree().change_scene_to_file("res://objects/story/story.tscn")
 
 
 func _on_sound_slider_value_changed(value: float) -> void:
@@ -37,3 +37,7 @@ func _on_menu_button_clicked() -> void:
 
 func _on_sound_slider_drag_ended(_value_changed: bool) -> void:
 	%TestSound.play()
+
+
+func _on_start_quick_clicked() -> void:
+	get_tree().change_scene_to_file("res://objects/game.tscn")

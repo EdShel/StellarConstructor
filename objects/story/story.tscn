@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjp47gmspevum"]
+
+[ext_resource type="Script" path="res://objects/story/story.gd" id="1_wxhy1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_b3aq4"]
+font_size = 51
+
+[node name="Story" type="Node2D"]
+position = Vector2(640, 360)
+script = ExtResource("1_wxhy1")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="SlideNumber" type="Label" parent="CanvasLayer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+text = "1/12"
+label_settings = SubResource("LabelSettings_b3aq4")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "LMB or Arrow Right - next slide
+RMB or Arrow Left - previous slide"
+vertical_alignment = 2

@@ -15,7 +15,7 @@ text = "Gravity Piston"
 
 [node name="Subtitle" parent="HBoxContainer/MarginContainer/VBoxContainer" index="1"]
 text = "Change the direction the Piston shoots items towards.
-Needs to extract the items from either a Landing Pad or a Space Factory."
+Needs to extract the items from either a Landing Pad, Space Factory, or other Pistons."
 
 [node name="HSeparator" type="HSeparator" parent="HBoxContainer/MarginContainer/VBoxContainer" index="2"]
 layout_mode = 2

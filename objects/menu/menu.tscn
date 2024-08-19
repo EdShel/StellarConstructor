@@ -204,7 +204,7 @@ layout_mode = 2
 text = "Back to menu"
 
 [connection signal="clicked" from="UI/Menu/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Start" to="." method="_on_start_clicked"]
-[connection signal="clicked" from="UI/Menu/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/StartQuick" to="." method="_on_start_clicked"]
+[connection signal="clicked" from="UI/Menu/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/StartQuick" to="." method="_on_start_quick_clicked"]
 [connection signal="clicked" from="UI/Menu/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Settings" to="." method="_on_settings_clicked"]
 [connection signal="drag_ended" from="UI/Settings/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer2/VBoxContainer/SoundSlider" to="." method="_on_sound_slider_drag_ended"]
 [connection signal="value_changed" from="UI/Settings/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer2/VBoxContainer/SoundSlider" to="." method="_on_sound_slider_value_changed"]
