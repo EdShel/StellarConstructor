@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bnrh75aysmd6v"]
+[gd_scene load_steps=19 format=3 uid="uid://bnrh75aysmd6v"]
 
 [ext_resource type="Script" path="res://objects/game.gd" id="1_86h5b"]
 [ext_resource type="Script" path="res://objects/utilities/camera_controller.gd" id="1_bl32n"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://c3wsqsjek417k" path="res://objects/ui/build_manager/build_manager.tscn" id="6_76ayv"]
 [ext_resource type="PackedScene" uid="uid://dqc33rdvt6280" path="res://objects/utilities/piston_orchestrator.tscn" id="6_c4gnl"]
 [ext_resource type="PackedScene" uid="uid://b0y7cwbq2t5ty" path="res://objects/ui/build_tooltips/build_tooltip_manager.tscn" id="7_wkbhf"]
+[ext_resource type="AudioStream" uid="uid://jb6xjkatqwdq" path="res://audio/build_place.wav" id="11_08l6w"]
+[ext_resource type="AudioStream" uid="uid://covw6qcctcnk3" path="res://audio/build_destroy.wav" id="12_e7fog"]
 
 [sub_resource type="Gradient" id="Gradient_ih6d0"]
 colors = PackedColorArray(0.27451, 0.0627451, 0.27451, 1, 0.245054, 0.0520928, 0.24506, 1)
@@ -116,3 +118,15 @@ alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 alignment = 1
+
+[node name="BuildPlaceSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("11_08l6w")
+volume_db = -5.0
+bus = &"SFX_Env"
+
+[node name="BuildDestroySound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("12_e7fog")
+volume_db = -10.0
+bus = &"SFX_Env"

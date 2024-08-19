@@ -69,6 +69,7 @@ func complete_crafting() -> void:
 		return
 	
 	inventory.increase(recipe.result_item, recipe.result_count)
+	%CraftedSound.play()
 	
 func get_item_to_shoot() -> String:
 	if not recipe:

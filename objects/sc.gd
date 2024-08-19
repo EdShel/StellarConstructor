@@ -7,6 +7,7 @@ signal game_changed(game: Node)
 signal toolbar_item_pressed(item_type: String)
 signal toolbar_item_place(data: Dictionary)
 signal toolbar_item_dismiss()
+signal build_destroyed()
 
 signal recompute_space_platform_size()
 

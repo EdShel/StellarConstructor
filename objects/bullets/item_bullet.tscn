@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://twludcb8rarv"]
+[gd_scene load_steps=8 format=3 uid="uid://twludcb8rarv"]
 
 [ext_resource type="Script" path="res://objects/bullets/item_bullet.gd" id="1_rgbt2"]
 [ext_resource type="Texture2D" uid="uid://b2qcqcgb1fqoc" path="res://sprites/items/ore.tres" id="2_1chxk"]
@@ -6,15 +6,70 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_se1x5"]
 size = Vector2(32, 32)
 
+[sub_resource type="Animation" id="Animation_4vhcc"]
+resource_name = "appear"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.241484, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0.5, 0.5)]
+}
+
+[sub_resource type="Animation" id="Animation_pqdmk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0xc57"]
+resource_name = "consume"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7dwyv"]
+_data = {
+"RESET": SubResource("Animation_pqdmk"),
+"appear": SubResource("Animation_4vhcc"),
+"consume": SubResource("Animation_0xc57")
+}
+
 [node name="ItemBullet" type="Node2D"]
 script = ExtResource("1_rgbt2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-scale = Vector2(0.5, 0.5)
+scale = Vector2(1e-05, 1e-05)
 texture = ExtResource("2_1chxk")
 
 [node name="Area2D" type="Area2D" parent="."]
+unique_name_in_owner = true
 collision_layer = 2
 input_pickable = false
 monitorable = false
@@ -22,4 +77,11 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_se1x5")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_7dwyv")
+}
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

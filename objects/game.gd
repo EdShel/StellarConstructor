@@ -36,6 +36,7 @@ func _enter_tree() -> void:
 	SC.connect("toolbar_item_pressed", handle_toolbar_item_pressed)
 	SC.connect("toolbar_item_place", handle_toolbar_item_place)
 	SC.connect("toolbar_item_dismiss", clear_ghost)
+	SC.connect("build_destroyed", func() -> void: %BuildDestroySound.play())
 	
 	SC.connect("increase_power_production", handle_power_production_increase)
 	SC.connect("increase_power_consumption", handle_power_consumption_increase)
@@ -99,6 +100,7 @@ func handle_toolbar_item_place(data: Dictionary) -> void:
 		clear_ghost()
 	
 	SC.recompute_space_platform_size.emit()
+	%BuildPlaceSound.play()
 
 func clear_ghost():
 	if !_ghost_node:
