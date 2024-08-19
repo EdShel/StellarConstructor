@@ -16,8 +16,11 @@ func _physics_process(_delta: float) -> void:
 	var preferred_direction = "None"
 	for area: Area2D in get_children():
 		var areas = area.get_overlapping_areas()
-		var has_inventory = areas.any(func(a: Area2D) -> bool: return !!a.get_parent().get("inventory"))
-		if has_inventory:
+		var can_connect = areas.any(func(a: Area2D) -> bool:
+			var building = a.get_parent()
+			return !!building.get("inventory") and not is_instance_of(building, Piston)
+		)
+		if can_connect :
 			if preferred_direction == "None":
 				preferred_direction = area.name
 				continue

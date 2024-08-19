@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://5uc4xdpqaau4"]
+[gd_scene load_steps=7 format=3 uid="uid://5uc4xdpqaau4"]
 
 [ext_resource type="PackedScene" uid="uid://bc5n2wpdgdgd8" path="res://objects/ui/build_tooltips/base_tooltip.tscn" id="1_74k0r"]
 [ext_resource type="Script" path="res://objects/ui/build_tooltips/piston_build_tooltip.gd" id="2_hfy8b"]
 [ext_resource type="PackedScene" uid="uid://bjqk8sp3b1gep" path="res://objects/ui/build_tooltips/power/power_consumption.tscn" id="3_2f77u"]
 [ext_resource type="PackedScene" uid="uid://3x5p463gkolq" path="res://objects/ui/build_tooltips/power/no_power.tscn" id="4_n16ee"]
 [ext_resource type="Texture2D" uid="uid://bax6lebtyg1xh" path="res://sprites/statuses/warning.png" id="5_88cfl"]
+[ext_resource type="PackedScene" uid="uid://dvoy7rycpxh0m" path="res://objects/ui/build_tooltips/inventory/build_inventory.tscn" id="6_kxrko"]
 
 [node name="PistonBuildTooltip" instance=ExtResource("1_74k0r")]
 script = ExtResource("2_hfy8b")
@@ -48,3 +49,7 @@ stretch_mode = 3
 layout_mode = 2
 text = "Must be connected to a Landing Pad or a Space Factory
 from behind to shoot items from them."
+
+[node name="BuildInventory" parent="VBoxContainer" index="5" instance=ExtResource("6_kxrko")]
+unique_name_in_owner = true
+layout_mode = 2

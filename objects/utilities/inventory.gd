@@ -30,3 +30,9 @@ func increase(item: String, amount: int) -> void:
 		return
 	entry["count"] += amount
 	changed.emit()
+
+func is_empty() -> bool:
+	for item in items:
+		if item["count"] > 0:
+			return false
+	return true

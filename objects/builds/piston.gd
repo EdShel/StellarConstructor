@@ -10,6 +10,7 @@ enum Direction {
 
 var _direction: Direction = Direction.RIGHT
 var shoot_direction: Vector2 = Vector2(1, 0)
+var inventory: Inventory = Inventory.new([])
 
 @export var power_consumption = 1
 @export var direction: Direction:
@@ -32,14 +33,34 @@ func _exit_tree() -> void:
 	SC.increase_power_consumption.emit(-power_consumption)
 
 func _process(delta: float) -> void:
-	if !source or no_power or shooting_state:
+	if no_power or shooting_state:
 		return
-	var item_to_shoot = source.get_item_to_shoot()
-	if item_to_shoot.is_empty():
+	
+	var what_to_shoot: ShootingState = find_what_to_shoot()
+	if what_to_shoot == null:
 		return
-	source.inventory.increase(item_to_shoot, -1)
-	shooting_state = ShootingState.new(item_to_shoot)
+	
+	if what_to_shoot.item_source == ItemSource.MY_INVENTORY:
+		inventory.increase(what_to_shoot.item_type, -1)
+	elif what_to_shoot.item_source == ItemSource.SOURCE_BUILD:
+		source.inventory.increase(what_to_shoot.item_type, -1)
+		
+	shooting_state = what_to_shoot
 	%AnimationPlayer.play("shoot")
+
+func find_what_to_shoot() -> ShootingState:
+	for item in inventory.items:
+		if item["count"] > 0:
+			return ShootingState.new(item["item"], ItemSource.MY_INVENTORY)
+	
+	if not source:
+		return null
+	
+	var source_item: String = source.get_item_to_shoot()
+	if not source_item.is_empty():
+		return ShootingState.new(source_item, ItemSource.SOURCE_BUILD)
+		
+	return null
 
 func update_direction(new_direction: Direction) -> void:
 	_direction = new_direction
@@ -122,8 +143,15 @@ func shoot() -> void:
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	shooting_state = null
 
+func get_item_to_shoot() -> String:
+	return "" # Don't allow pistons to grab stuff from other pistons
+
+enum ItemSource { NONE, MY_INVENTORY, SOURCE_BUILD }
+
 class ShootingState:
 	var item_type: String
+	var item_source: ItemSource
 	
-	func _init(item_type: String) -> void:
+	func _init(item_type: String, item_source: ItemSource) -> void:
 		self.item_type = item_type
+		self.item_source = item_source
