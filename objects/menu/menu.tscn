@@ -1,0 +1,211 @@
+[gd_scene load_steps=12 format=3 uid="uid://b2qxmaoprf8du"]
+
+[ext_resource type="Script" path="res://objects/menu/menu.gd" id="1_0t82v"]
+[ext_resource type="PackedScene" uid="uid://dl0mfg5xygstu" path="res://objects/visuals/space_background.tscn" id="1_3ibex"]
+[ext_resource type="Texture2D" uid="uid://cjq8h7duty0m1" path="res://sprites/menu/sphere.png" id="2_1s78w"]
+[ext_resource type="FontFile" uid="uid://bvim3n7tdie5i" path="res://styles/Gupter-Regular.ttf" id="3_8c5k6"]
+[ext_resource type="Texture2D" uid="uid://cf7qbdmugbyc2" path="res://sprites/menu/gmtk2024-logo.png" id="4_d1web"]
+[ext_resource type="PackedScene" uid="uid://bgk1o8o8sda2k" path="res://objects/menu/menu_button.tscn" id="4_ekqa1"]
+[ext_resource type="AudioStream" uid="uid://df6igoonge50" path="res://audio/menu_select.wav" id="7_cfhto"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_q3erb"]
+line_spacing = -40.0
+font = ExtResource("3_8c5k6")
+font_size = 120
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.129412)
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_bcgla"]
+font = ExtResource("3_8c5k6")
+
+[sub_resource type="LabelSettings" id="LabelSettings_eeim0"]
+font = ExtResource("3_8c5k6")
+font_size = 91
+
+[sub_resource type="LabelSettings" id="LabelSettings_6ildr"]
+font_size = 36
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_0t82v")
+
+[node name="SpaceBackground" parent="." instance=ExtResource("1_3ibex")]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Menu" type="Control" parent="UI"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/Menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -256.0
+offset_top = -50.0
+offset_right = 256.0
+offset_bottom = 512.0
+grow_horizontal = 2
+texture = ExtResource("2_1s78w")
+stretch_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Menu/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Stellar
+Constructor"
+label_settings = SubResource("LabelSettings_q3erb")
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Menu/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Menu/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Start" parent="UI/Menu/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("4_ekqa1")]
+layout_mode = 2
+
+[node name="StartQuick" parent="UI/Menu/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("4_ekqa1")]
+layout_mode = 2
+text = "Start (skip story)"
+
+[node name="Settings" parent="UI/Menu/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("4_ekqa1")]
+layout_mode = 2
+text = "Settings"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI/Menu/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control3" type="Control" parent="UI/Menu/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GJLogo" type="TextureRect" parent="UI/Menu/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/Control3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -235.0
+offset_top = -190.0
+offset_bottom = -35.0
+texture = ExtResource("4_d1web")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="UI/Menu/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/Control3"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -863.0
+offset_top = -19.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Made by Eduard \"EdShel\" Sheliemietiev"
+label_settings = SubResource("LabelSettings_bcgla")
+horizontal_alignment = 2
+
+[node name="Settings" type="Control" parent="UI"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Settings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Settings/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/Settings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Settings"
+label_settings = SubResource("LabelSettings_eeim0")
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Settings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = 30
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI/Settings/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Settings/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/Settings/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Sound volume"
+label_settings = SubResource("LabelSettings_6ildr")
+
+[node name="SoundSlider" type="HSlider" parent="UI/Settings/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TestSound" type="AudioStreamPlayer" parent="UI/Settings/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
+unique_name_in_owner = true
+stream = ExtResource("7_cfhto")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Settings/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Settings/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="MenuButton" parent="UI/Settings/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer2/HBoxContainer/VBoxContainer" instance=ExtResource("4_ekqa1")]
+layout_mode = 2
+text = "Back to menu"
+
+[connection signal="clicked" from="UI/Menu/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Start" to="." method="_on_start_clicked"]
+[connection signal="clicked" from="UI/Menu/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/StartQuick" to="." method="_on_start_clicked"]
+[connection signal="clicked" from="UI/Menu/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Settings" to="." method="_on_settings_clicked"]
+[connection signal="drag_ended" from="UI/Settings/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer2/VBoxContainer/SoundSlider" to="." method="_on_sound_slider_drag_ended"]
+[connection signal="value_changed" from="UI/Settings/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer2/VBoxContainer/SoundSlider" to="." method="_on_sound_slider_value_changed"]
+[connection signal="clicked" from="UI/Settings/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer2/HBoxContainer/VBoxContainer/MenuButton" to="." method="_on_menu_button_clicked"]

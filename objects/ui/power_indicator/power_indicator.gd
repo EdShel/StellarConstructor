@@ -13,7 +13,7 @@ func rerender_progress() -> void:
 	%ProductionIndicator.value = game.power_production
 	%ConsumptionIndicator.value = game.power_consumption
 	
-	var template = "Consumption %s, Production %s, Goal %s"
+	var template = "Consumption %sGW, Production %sGW, Goal %sGW"
 	%Status.text = template % [game.power_consumption, game.power_production, game.power_goal]
 	pass
 

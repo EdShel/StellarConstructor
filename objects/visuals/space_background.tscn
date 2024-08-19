@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://dl0mfg5xygstu"]
+
+[ext_resource type="Texture2D" uid="uid://byyalp7ylos1v" path="res://sprites/background/stars.png" id="1_wg1m0"]
+
+[sub_resource type="Gradient" id="Gradient_ih6d0"]
+colors = PackedColorArray(0.27451, 0.0627451, 0.27451, 1, 0.245054, 0.0520928, 0.24506, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mwpsg"]
+seed = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kyg7y"]
+width = 1280
+height = 720
+color_ramp = SubResource("Gradient_ih6d0")
+noise = SubResource("FastNoiseLite_mwpsg")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_du0cd"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_56oh3"]
+_data = [Vector2(0, 0.120301), 0.0, 0.0, 0, 0, Vector2(0.763514, 0.441461), 0.0, 0.0, 0, 0, Vector2(1, 0.11681), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_krn3o"]
+offsets = PackedFloat32Array(0, 0.136139, 0.863861, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="SpaceBackground" type="CanvasLayer"]
+layer = -1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(640, 360)
+texture = SubResource("NoiseTexture2D_kyg7y")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_du0cd")
+position = Vector2(640, 360)
+amount = 40
+lifetime = 30.0
+preprocess = 30.0
+fixed_fps = 10
+texture = ExtResource("1_wg1m0")
+emission_shape = 3
+emission_rect_extents = Vector2(640, 360)
+gravity = Vector2(0, 0)
+angle_max = 360.0
+scale_amount_min = 0.1
+scale_amount_curve = SubResource("Curve_56oh3")
+color_ramp = SubResource("Gradient_krn3o")
+anim_speed_min = 1.0
+anim_speed_max = 1.0

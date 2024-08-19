@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://bgk1o8o8sda2k"]
+
+[ext_resource type="FontFile" uid="uid://bvim3n7tdie5i" path="res://styles/Gupter-Regular.ttf" id="1_8wd1n"]
+[ext_resource type="Script" path="res://objects/menu/menu_button.gd" id="2_pll17"]
+[ext_resource type="AudioStream" uid="uid://df6igoonge50" path="res://audio/menu_select.wav" id="3_ykpm4"]
+[ext_resource type="AudioStream" uid="uid://b6swux7vdvxm3" path="res://audio/menu_confirm.wav" id="4_vbleo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ak8og"]
+font = ExtResource("1_8wd1n")
+font_size = 91
+
+[node name="MenuButton" type="Label"]
+mouse_filter = 1
+text = "Start"
+label_settings = SubResource("LabelSettings_ak8og")
+script = ExtResource("2_pll17")
+hover_color = Color(0.960797, 0, 0.263028, 1)
+
+[node name="SelectedSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_ykpm4")
+bus = &"SFX"
+
+[node name="ConfirmSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_vbleo")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
