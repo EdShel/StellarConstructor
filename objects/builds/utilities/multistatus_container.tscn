@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bteuynu5he2it"]
+
+[ext_resource type="Script" path="res://objects/builds/utilities/multistatus_container.gd" id="1_tpumn"]
+
+[node name="MultistatusContainer" type="Node2D"]
+script = ExtResource("1_tpumn")
+
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
+[connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]

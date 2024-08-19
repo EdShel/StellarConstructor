@@ -15,7 +15,7 @@ var inventory: Inventory = Inventory.new([
 	},
 	{
 		"item": "factory",
-		"count": 5,
+		"count": 4,
 	},
 	{
 		"item": "landing_pad",

@@ -6,12 +6,17 @@ var no_power: Node2D = null
 
 var inventory: Inventory = Inventory.new([])
 
-var recipe: FactoryRecipe = null
+var _recipe: FactoryRecipe = null
+var recipe: FactoryRecipe:
+	get: return _recipe
+	set(value): update_recipe(value)
 var crafting_state: CraftingState = null
+var no_recipe: Node2D = null
 
 func _ready() -> void:
 	SC.power_stats_changed.connect(update_power_status)
 	SC.increase_power_consumption.emit(power_consumption)
+	update_recipe(_recipe)
 
 func _exit_tree() -> void:
 	SC.increase_power_consumption.emit(-power_consumption)
@@ -50,7 +55,6 @@ func have_enough_ingredients() -> bool:
 	return true
 
 func complete_crafting() -> void:
-	print("Crafting done")
 	var recipe = crafting_state.recipe
 	var is_toolbelt_item = (
 		recipe.result_item == "piston"
@@ -80,13 +84,22 @@ func get_item_to_shoot() -> String:
 		return ""
 	return recipe.result_item
 
+func update_recipe(new_recipe: FactoryRecipe) -> void:
+	_recipe = new_recipe
+	if !_recipe and !no_recipe:
+		no_recipe = preload("res://objects/builds/utilities/warning.tscn").instantiate()
+		%MultistatusContainer.add_child(no_recipe)
+		return
+	if recipe and no_recipe:
+		no_recipe.queue_free()
+		no_recipe = null
 
 func update_power_status() -> void:
 	var game = SC.game
 	if game.power_consumption > game.power_production and !no_power:
 		no_power = preload("res://objects/builds/utilities/warning.tscn").instantiate()
 		no_power.type = "no_power"
-		add_child(no_power)
+		%MultistatusContainer.add_child(no_power)
 		return
 	if game.power_consumption <= game.power_production and no_power:
 		no_power.queue_free()

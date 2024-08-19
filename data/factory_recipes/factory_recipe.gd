@@ -26,12 +26,12 @@ static func create_recipes() -> Array[FactoryRecipe]:
 	return [
 		FactoryRecipe.new(
 			[
-				Ingredient.new("ore", 8),
-				Ingredient.new("water", 1),
+				Ingredient.new("ore", 6),
+				Ingredient.new("water", 3),
 			],
 			"ingot", # result
 			1,       # count
-			4.0,     # duration
+			3.0,     # duration
 			"Ingot",
 			"Use hydrogen fuel to smelt minerals into useful ingots. Has no byproducts because they are dropped into the star."
 		),
@@ -41,7 +41,7 @@ static func create_recipes() -> Array[FactoryRecipe]:
 			],
 			"circuit", # result
 			1,         # count
-			1.0,        # duration
+			6.0,        # duration
 			"Electronics",
 			"Weld ingots into electrical circuitry. They make computers smort."
 		),
@@ -60,7 +60,6 @@ static func create_recipes() -> Array[FactoryRecipe]:
 			[
 				Ingredient.new("ingot", 10),
 				Ingredient.new("circuit", 5),
-				Ingredient.new("water", 100),
 			],
 			"factory",  # result
 			1,          # count

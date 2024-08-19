@@ -41,13 +41,16 @@ _data = {
 "sway": SubResource("Animation_tff4x")
 }
 
-[node name="Warning" type="Sprite2D"]
+[node name="Warning" type="Node2D"]
+script = ExtResource("2_nqrfo")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 z_index = 1
 position = Vector2(0, 4)
 texture = ExtResource("1_qn6ot")
-script = ExtResource("2_nqrfo")
 
-[node name="WarningPlayer" type="AnimationPlayer" parent="."]
+[node name="WarningPlayer" type="AnimationPlayer" parent="Sprite"]
 unique_name_in_owner = true
 reset_on_save = false
 libraries = {

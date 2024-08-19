@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://ct60r41w2k4xk"]
+[gd_scene load_steps=14 format=3 uid="uid://ct60r41w2k4xk"]
 
 [ext_resource type="Script" path="res://objects/builds/factory.gd" id="1_60gtp"]
 [ext_resource type="PackedScene" uid="uid://o506ib7yigid" path="res://objects/builds/utilities/build_collider.tscn" id="2_dcm46"]
 [ext_resource type="Texture2D" uid="uid://ctcahalqpavn7" path="res://sprites/builds/factory_anim.png" id="2_kngdx"]
 [ext_resource type="Texture2D" uid="uid://cmkkht63lrq6v" path="res://sprites/builds.png" id="2_ob6mj"]
+[ext_resource type="PackedScene" uid="uid://bteuynu5he2it" path="res://objects/builds/utilities/multistatus_container.tscn" id="5_xp08c"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aigbo"]
 atlas = ExtResource("2_ob6mj")
@@ -78,3 +79,6 @@ animation = &"stay"
 [node name="BuildCollider" parent="." instance=ExtResource("2_dcm46")]
 cell_size = 2
 item_type = "factory"
+
+[node name="MultistatusContainer" parent="." instance=ExtResource("5_xp08c")]
+unique_name_in_owner = true

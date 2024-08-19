@@ -146,7 +146,10 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	shooting_state = null
 
 func get_item_to_shoot() -> String:
-	return "" # Don't allow pistons to grab stuff from other pistons
+	for item in inventory.items:
+		if item["count"] > 0:
+			return item["item"]
+	return ""
 
 enum ItemSource { NONE, MY_INVENTORY, SOURCE_BUILD }
 
