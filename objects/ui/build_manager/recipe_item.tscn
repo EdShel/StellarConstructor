@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://objects/ui/build_manager/recipe_item.gd" id="1_rblus"]
 
 [node name="RecipeItem" type="VBoxContainer"]
+alignment = 1
 script = ExtResource("1_rblus")
 
 [node name="Icon" type="TextureRect" parent="."]
