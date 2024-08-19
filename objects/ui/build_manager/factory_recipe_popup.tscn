@@ -6,6 +6,14 @@
 [node name="FactoryRecipePopup" instance=ExtResource("1_7un4a")]
 script = ExtResource("2_diqcv")
 
+[node name="Title" parent="HBoxContainer/MarginContainer/VBoxContainer" index="0"]
+text = "Space Factory"
+
+[node name="Subtitle" parent="HBoxContainer/MarginContainer/VBoxContainer" index="1"]
+text = "Select crafting recipe for this machine.
+Supply necessary ingredients using Gravity Pistons (i.e. buildings can NOT exchange items without Pistons).
+Also, use Gravity Pistons to extract the produced item to be supplied to other Space Factories."
+
 [node name="Items" type="HFlowContainer" parent="HBoxContainer/MarginContainer/VBoxContainer" index="2"]
 unique_name_in_owner = true
 layout_mode = 2

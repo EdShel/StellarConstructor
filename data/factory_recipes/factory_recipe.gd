@@ -26,7 +26,7 @@ static func create_recipes() -> Array[FactoryRecipe]:
 	return [
 		FactoryRecipe.new(
 			[
-				Ingredient.new("ore", 10),
+				Ingredient.new("ore", 8),
 				Ingredient.new("water", 1),
 			],
 			"ingot", # result

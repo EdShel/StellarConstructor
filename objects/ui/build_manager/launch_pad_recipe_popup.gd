@@ -2,10 +2,15 @@ extends BasePopup
 class_name LaunchPadRecipePopup
 
 func _ready() -> void:
-	for child in %RecipesList.get_children():
-		child.clicked.connect(handle_recipe_clicked)
-
-
+	for planet in SC.game.planets:
+		var recipe = preload("res://objects/ui/build_manager/recipe_item.tscn").instantiate()
+		recipe.item_type = planet.result_item
+		recipe.item_count = planet.send_rocket_threshold
+		recipe.icon = ItemHelper.get_item_icon(planet.result_item)
+		recipe.recipe_name = "%s x%s" % [ItemHelper.get_item_name(planet.result_item), planet.send_rocket_threshold]
+		recipe.clicked.connect(handle_recipe_clicked)
+		%RecipesList.add_child(recipe)
+	
 func handle_recipe_clicked(recipe: ToolbarItem) -> void:
 	var data = {
 		"recipe_name": recipe.recipe_name,

@@ -1,11 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://h35ewf03pur5"]
+[gd_scene load_steps=3 format=3 uid="uid://h35ewf03pur5"]
 
 [ext_resource type="PackedScene" uid="uid://11ur7mtmo2rn" path="res://objects/ui/build_manager/base_popup.tscn" id="1_7ie3x"]
 [ext_resource type="Script" path="res://objects/ui/build_manager/launch_pad_recipe_popup.gd" id="2_d8osi"]
-[ext_resource type="PackedScene" uid="uid://cheh1dak3vjjt" path="res://objects/ui/build_manager/recipe_item.tscn" id="2_g27pd"]
-[ext_resource type="Texture2D" uid="uid://b2qcqcgb1fqoc" path="res://sprites/items/ore.tres" id="3_b3mew"]
-[ext_resource type="Texture2D" uid="uid://bj2o48xnj06f8" path="res://sprites/items/crystal.tres" id="5_yw5ir"]
-[ext_resource type="Texture2D" uid="uid://cuj2sot1ws2ri" path="res://sprites/items/water.tres" id="6_kpm6o"]
 
 [node name="LaunchPadRecipePopup" instance=ExtResource("1_7ie3x")]
 script = ExtResource("2_d8osi")
@@ -13,22 +9,4 @@ script = ExtResource("2_d8osi")
 [node name="RecipesList" type="HBoxContainer" parent="HBoxContainer/MarginContainer/VBoxContainer" index="2"]
 unique_name_in_owner = true
 layout_mode = 2
-
-[node name="RecipeItem" parent="HBoxContainer/MarginContainer/VBoxContainer/RecipesList" index="0" instance=ExtResource("2_g27pd")]
-layout_mode = 2
-recipe_name = "Material delivery"
-icon = ExtResource("3_b3mew")
-item_count = 50
-
-[node name="RecipeItem2" parent="HBoxContainer/MarginContainer/VBoxContainer/RecipesList" index="1" instance=ExtResource("2_g27pd")]
-layout_mode = 2
-recipe_name = "Crystal delivery"
-icon = ExtResource("5_yw5ir")
-item_type = "crystal"
-item_count = 100
-
-[node name="RecipeItem3" parent="HBoxContainer/MarginContainer/VBoxContainer/RecipesList" index="2" instance=ExtResource("2_g27pd")]
-layout_mode = 2
-recipe_name = "Liquid Hydrogen"
-icon = ExtResource("6_kpm6o")
-item_type = "water"
+theme_override_constants/separation = 16

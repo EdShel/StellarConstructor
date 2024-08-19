@@ -7,7 +7,7 @@ var _ghost_node_item: String = ""
 var inventory: Inventory = Inventory.new([
 	{
 		"item": "solar",
-		"count": 5,
+		"count": 10,
 	},
 	{
 		"item": "piston",
@@ -15,11 +15,11 @@ var inventory: Inventory = Inventory.new([
 	},
 	{
 		"item": "factory",
-		"count": 1,
+		"count": 5,
 	},
 	{
 		"item": "landing_pad",
-		"count": 3,
+		"count": 2,
 	},
 ])
 
@@ -27,9 +27,8 @@ var power_goal = 50
 var power_production = 0
 var power_consumption = 0
 
-var ore_miner: ResourceMiner
-var crystal_miner: ResourceMiner
-var water_miner: ResourceMiner
+var planets: Array[PlanetConfig]
+var miners: Array[ResourceMiner] = []
 
 func _enter_tree() -> void:
 	SC.connect("toolbar_item_pressed", handle_toolbar_item_pressed)
@@ -41,10 +40,11 @@ func _enter_tree() -> void:
 	
 	SC.connect("increase_inventory_item", handle_increase_inventory_item)
 	SC.connect("increase_mining_speed", handle_increase_mining_speed)
-	
-	ore_miner = ResourceMiner.new("ore")
-	crystal_miner = ResourceMiner.new("crystal")
-	water_miner = ResourceMiner.new("water")
+
+	planets = PlanetConfig.create_planets()
+	for planet in planets:
+		var miner = ResourceMiner.new(planet)
+		miners.push_back(miner)
 	
 	SC.set_game(self)
 
@@ -56,9 +56,8 @@ func _exit_tree() -> void:
 	return # TODO: unsubscribe
 
 func _process(delta: float) -> void:
-	ore_miner.process(delta)
-	crystal_miner.process(delta)
-	water_miner.process(delta)
+	for miner in miners:
+		miner.process(delta)
 
 func handle_toolbar_item_pressed(item_type: String) -> void:
 	if _ghost_node_item == item_type:
@@ -121,41 +120,37 @@ func handle_increase_inventory_item(item_type: String, amount: int) -> void:
 	%Toolbar.init_inventory(inventory.items)
 
 func handle_increase_mining_speed():
-	ore_miner.mining_rate_per_sec *= 2.0
-	crystal_miner.mining_rate_per_sec *= 2.0
-	water_miner.mining_rate_per_sec *= 2.0
+	for planet in planets:
+		planet.mining_rate_per_sec *= 1.02
 
 class ResourceMiner:
-	var planet_buffer: float = 100.0
-	var planet_buffer_limit: float = 500
-	var mining_rate_per_sec: float = 3.0
-	var item_type: String
+	var planet: PlanetConfig
 	
 	var previous_round_robin_index = -1
 	
-	func _init(item_type: String) -> void:
-		self.item_type = item_type
+	func _init(planet: PlanetConfig) -> void:
+		self.planet = planet
 	
 	func process(dt: float) -> void:
-		if planet_buffer < planet_buffer_limit:
-			planet_buffer += dt * mining_rate_per_sec
+		if planet.planet_buffer < planet.planet_buffer_limit:
+			planet.planet_buffer += dt * planet.mining_rate_per_sec
 		try_dump_buffer_to_landing_pad()
 	
 	func try_dump_buffer_to_landing_pad() -> void:
 		var game = SC.game
 		var landing_pads = game.get_tree().get_nodes_in_group("landing_pads")
 		var matching_landing_pads = landing_pads.filter(func(l):
-			return l.recipe.size() > 0 and l.recipe["item_type"] == item_type
+			return l.recipe.size() > 0 and l.recipe["item_type"] == planet.result_item
 		)
 		if matching_landing_pads.size() == 0:
 			return
-		var items_to_dump = matching_landing_pads.front().recipe["item_count"]
-		if (self.planet_buffer < items_to_dump):
+		var items_to_dump = planet.send_rocket_threshold
+		if (planet.planet_buffer < items_to_dump):
 			return
 		self.previous_round_robin_index = wrapi(self.previous_round_robin_index + 1, 0, matching_landing_pads.size())
 		var target_pad = matching_landing_pads[self.previous_round_robin_index]
 		if target_pad.is_landing_rocket:
 			return
-		target_pad.accept_rocket(self.item_type, items_to_dump)
-		self.planet_buffer -= items_to_dump
+		target_pad.accept_rocket(planet.result_item, items_to_dump)
+		planet.planet_buffer -= items_to_dump
 		

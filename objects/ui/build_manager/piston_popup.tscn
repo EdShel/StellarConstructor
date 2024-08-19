@@ -10,6 +10,13 @@
 [node name="PistonPopup" instance=ExtResource("1_5ae4e")]
 script = ExtResource("2_cb4u1")
 
+[node name="Title" parent="HBoxContainer/MarginContainer/VBoxContainer" index="0"]
+text = "Gravity Piston"
+
+[node name="Subtitle" parent="HBoxContainer/MarginContainer/VBoxContainer" index="1"]
+text = "Change the direction the Piston shoots items towards.
+Needs to extract the items from either a Landing Pad or a Space Factory."
+
 [node name="Directions" type="HBoxContainer" parent="HBoxContainer/MarginContainer/VBoxContainer" index="2"]
 unique_name_in_owner = true
 layout_mode = 2
