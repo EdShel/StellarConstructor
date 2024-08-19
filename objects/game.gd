@@ -7,7 +7,7 @@ var _ghost_node_item: String = ""
 var inventory: Inventory = Inventory.new([
 	{
 		"item": "solar",
-		"count": 10,
+		"count": 4,
 	},
 	{
 		"item": "piston",
@@ -19,13 +19,15 @@ var inventory: Inventory = Inventory.new([
 	},
 	{
 		"item": "landing_pad",
-		"count": 2,
+		"count": 3,
 	},
 ])
 
-var power_goal = 50
+var power_goal = 500
 var power_production = 0
 var power_consumption = 0
+var victory_shown = false
+var victory_popup: Node = null
 
 var planets: Array[PlanetConfig]
 var miners: Array[ResourceMiner] = []
@@ -110,6 +112,15 @@ func clear_ghost():
 func handle_power_production_increase(amount: int) -> void:
 	power_production += amount
 	SC.power_stats_changed.emit()
+	
+	if power_production >= power_goal and !victory_shown:
+		victory_shown = true
+		victory_popup = preload("res://objects/ui/victory_popup/victory_popup.tscn").instantiate()
+		victory_popup.closed.connect(func(_unused: Dictionary) -> void:
+			victory_popup.queue_free()
+			victory_popup = null
+		)
+		%VictorySlot.add_child(victory_popup)
 
 func handle_power_consumption_increase(amount: int) -> void:
 	power_consumption += amount
@@ -121,7 +132,7 @@ func handle_increase_inventory_item(item_type: String, amount: int) -> void:
 
 func handle_increase_mining_speed():
 	for planet in planets:
-		planet.mining_rate_per_sec *= 1.02
+		planet.mining_rate_per_sec *= 1.5
 
 class ResourceMiner:
 	var planet: PlanetConfig

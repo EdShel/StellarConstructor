@@ -17,22 +17,27 @@ text = "Gravity Piston"
 text = "Change the direction the Piston shoots items towards.
 Needs to extract the items from either a Landing Pad or a Space Factory."
 
-[node name="Directions" type="HBoxContainer" parent="HBoxContainer/MarginContainer/VBoxContainer" index="2"]
-unique_name_in_owner = true
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/MarginContainer/VBoxContainer" index="2"]
 layout_mode = 2
 
-[node name="right" type="TextureRect" parent="HBoxContainer/MarginContainer/VBoxContainer/Directions" index="0"]
+[node name="Directions" type="HBoxContainer" parent="HBoxContainer/MarginContainer/VBoxContainer" index="3"]
+unique_name_in_owner = true
 layout_mode = 2
-texture = ExtResource("3_71s4k")
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="left" type="TextureRect" parent="HBoxContainer/MarginContainer/VBoxContainer/Directions" index="0"]
+layout_mode = 2
+texture = ExtResource("3_icccm")
 
 [node name="up" type="TextureRect" parent="HBoxContainer/MarginContainer/VBoxContainer/Directions" index="1"]
 layout_mode = 2
 texture = ExtResource("4_v1k27")
 
-[node name="left" type="TextureRect" parent="HBoxContainer/MarginContainer/VBoxContainer/Directions" index="2"]
-layout_mode = 2
-texture = ExtResource("3_icccm")
-
-[node name="down" type="TextureRect" parent="HBoxContainer/MarginContainer/VBoxContainer/Directions" index="3"]
+[node name="down" type="TextureRect" parent="HBoxContainer/MarginContainer/VBoxContainer/Directions" index="2"]
 layout_mode = 2
 texture = ExtResource("6_0k76h")
+
+[node name="right" type="TextureRect" parent="HBoxContainer/MarginContainer/VBoxContainer/Directions" index="3"]
+layout_mode = 2
+texture = ExtResource("3_71s4k")

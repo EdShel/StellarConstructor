@@ -30,9 +30,9 @@ static func create_recipes() -> Array[FactoryRecipe]:
 				Ingredient.new("water", 3),
 			],
 			"ingot", # result
-			1,       # count
+			2,       # count
 			3.0,     # duration
-			"Ingot",
+			"Ingot x2",
 			"Use hydrogen fuel to smelt minerals into useful ingots. Has no byproducts because they are dropped into the star."
 		),
 		FactoryRecipe.new(
@@ -41,24 +41,24 @@ static func create_recipes() -> Array[FactoryRecipe]:
 			],
 			"circuit", # result
 			1,         # count
-			6.0,        # duration
+			5.0,        # duration
 			"Electronics",
 			"Weld ingots into electrical circuitry. They make computers smort."
 		),
 		FactoryRecipe.new(
 			[
-				Ingredient.new("ingot", 1),
+				Ingredient.new("ingot", 2),
 				Ingredient.new("circuit", 5),
 			],
 			"piston",  # result
 			1,         # count
 			2.0,        # duration
 			"Gravity Piston",
-			"Electric machine capable of safe item transferring in the solar orbit. Can receive and shoot resources from Rocket Landing Pad and Space Factory."
+			"Electric machine capable of safe item transferring in the solar orbit. Can receive and shoot resources from Rocket Landing Pad, Space Factory, and even other Pistons (useful for turning corners or splitting items)."
 		),
 		FactoryRecipe.new(
 			[
-				Ingredient.new("ingot", 10),
+				Ingredient.new("ingot", 5),
 				Ingredient.new("circuit", 5),
 			],
 			"factory",  # result
@@ -66,16 +66,6 @@ static func create_recipes() -> Array[FactoryRecipe]:
 			2.0,         # duration
 			"Space Factory",
 			"Electric machine designed to construct various things. You are interacting with one right now."
-		),
-		FactoryRecipe.new(
-			[
-				Ingredient.new("ingot", 100),
-			],
-			"landing_pad",    # result
-			1,                # count
-			5.0,               # duration
-			"Rocket Landing Pad",
-			"Receives raw resources from your stellar colonies. If 2+ landing pads expect the same resource, it will be delivered using round-robin algorithm."
 		),
 		FactoryRecipe.new(
 			[
@@ -95,21 +85,33 @@ static func create_recipes() -> Array[FactoryRecipe]:
 				Ingredient.new("ingot", 1),
 			],
 			"solar",          # result
-			1,                # count
-			1.0,               # duration
+			4,                # count
+			10.0,               # duration
 			"Solar Panel",
 			"Generates electricity, duh. To warp to your home system and achieve the victory, you need to build a lot of these."
 		),
 		FactoryRecipe.new(
 			[
-				Ingredient.new("crystal", 10),
+				Ingredient.new("ingot", 5),
+				Ingredient.new("water", 1),
+				Ingredient.new("glass", 5),
+			],
+			"landing_pad",    # result
+			1,                # count
+			5.0,               # duration
+			"Rocket Landing Pad",
+			"Receives raw resources from your stellar colonies. If 2+ landing pads expect the same resource, it will be delivered using round-robin algorithm."
+		),
+		FactoryRecipe.new(
+			[
+				Ingredient.new("glass", 10),
 				Ingredient.new("circuit", 1),
 				Ingredient.new("water", 1),
 			],
 			"mining",         # result
 			1,                # count
 			10.0,              # duration
-			"Colony Drilling Efficiency",
+			"Colony Drilling Efficiency Research +50%",
 			"Rockets arrive to landing pads faster due to increased mining speed. Not required to finish the game but useful for megabases which are BUILT TO SCALE."
 		),
 	]

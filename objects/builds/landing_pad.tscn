@@ -16,5 +16,5 @@ item_type = "landing_pad"
 
 [node name="RocketSlot" type="Node2D" parent="."]
 unique_name_in_owner = true
-z_index = 1
+z_index = 2
 y_sort_enabled = true

@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfy2nfprpmjkd"]
+
+[ext_resource type="PackedScene" uid="uid://11ur7mtmo2rn" path="res://objects/ui/build_manager/base_popup.tscn" id="1_o3qgf"]
+
+[node name="VictoryPopup" instance=ExtResource("1_o3qgf")]
+
+[node name="Title" parent="HBoxContainer/MarginContainer/VBoxContainer" index="0"]
+text = "Well done!"
+
+[node name="Subtitle" parent="HBoxContainer/MarginContainer/VBoxContainer" index="1"]
+text = "You generated enough energy to rip the Fabric of Space-time and
+travel back to your home!
+
+You can continue scaling your base or leave this system behind."
