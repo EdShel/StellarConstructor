@@ -23,6 +23,8 @@ signal show_build_tooltip(item_type: String, node: Node2D)
 signal hide_build_tooltip(item_type: String, node: Node2D)
 signal enable_no_tooltip_mode(enable: bool)
 
+signal piston_added(piston: Piston)
+signal piston_removed(piston: Piston)
 
 func set_game(new_game: Game) -> void:
 	game = new_game

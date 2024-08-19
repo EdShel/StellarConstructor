@@ -26,13 +26,15 @@ var shooting_state: ShootingState = null
 func _ready() -> void:
 	SC.power_stats_changed.connect(update_power_status)
 	SC.increase_power_consumption.emit(power_consumption)
+	SC.piston_added.emit(self)
 	update_direction(direction)
 	update_source(null)
 
 func _exit_tree() -> void:
 	SC.increase_power_consumption.emit(-power_consumption)
+	SC.piston_removed.emit(self)
 
-func _process(delta: float) -> void:
+func try_shooting() -> void:
 	if no_power or shooting_state:
 		return
 	

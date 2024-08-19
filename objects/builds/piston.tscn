@@ -26,6 +26,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_j8lmo"]
 resource_name = "shoot"
+length = 0.8
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true

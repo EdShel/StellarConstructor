@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqc33rdvt6280"]
+
+[ext_resource type="Script" path="res://objects/utilities/piston_orchestrator.gd" id="1_0rgf0"]
+
+[node name="PistonOrchestrator" type="Timer"]
+autostart = true
+script = ExtResource("1_0rgf0")
+
+[connection signal="timeout" from="." to="." method="_on_timeout"]
