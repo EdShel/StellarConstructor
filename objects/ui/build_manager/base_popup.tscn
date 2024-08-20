@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://11ur7mtmo2rn"]
+[gd_scene load_steps=6 format=3 uid="uid://11ur7mtmo2rn"]
 
 [ext_resource type="Script" path="res://objects/ui/build_manager/base_popup.gd" id="1_306dy"]
 [ext_resource type="Texture2D" uid="uid://bislcawim670g" path="res://sprites/ui/popup_background.png" id="1_qa1ei"]
+[ext_resource type="Texture2D" uid="uid://qah4v17l2ngc" path="res://sprites/ui/close_button.png" id="3_ne2f1"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6tvff"]
 texture = ExtResource("1_qa1ei")
@@ -21,6 +22,26 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_6tvff")
 script = ExtResource("1_306dy")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="CloseIcon" type="TextureRect" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -95.0
+offset_right = 96.0
+offset_bottom = 1.0
+grow_horizontal = 0
+texture = ExtResource("3_ne2f1")
+stretch_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -54,4 +75,7 @@ layout_mode = 2
 layout_mode = 2
 text = "Cancel"
 
+[connection signal="gui_input" from="Control/CloseIcon" to="." method="_on_close_icon_gui_input"]
+[connection signal="mouse_entered" from="Control/CloseIcon" to="." method="_on_close_icon_mouse_entered"]
+[connection signal="mouse_exited" from="Control/CloseIcon" to="." method="_on_close_icon_mouse_exited"]
 [connection signal="pressed" from="HBoxContainer/MarginContainer/VBoxContainer/CenterContainer/CancelButton" to="." method="_on_cancel_button_pressed"]

@@ -124,6 +124,7 @@ func handle_power_production_increase(amount: int) -> void:
 			victory_popup = null
 		)
 		%VictorySlot.add_child(victory_popup)
+		SC.toolbar_item_dismiss.emit()
 
 func handle_power_consumption_increase(amount: int) -> void:
 	power_consumption += amount
