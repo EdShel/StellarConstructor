@@ -1,18 +1,50 @@
-[gd_scene load_steps=3 format=3 uid="uid://cheh1dak3vjjt"]
+[gd_scene load_steps=4 format=3 uid="uid://cheh1dak3vjjt"]
 
 [ext_resource type="Texture2D" uid="uid://b2qcqcgb1fqoc" path="res://sprites/items/ore.tres" id="1_jm8j6"]
 [ext_resource type="Script" path="res://objects/ui/build_manager/recipe_item.gd" id="1_rblus"]
+[ext_resource type="Texture2D" uid="uid://bl7xg4egh0wd5" path="res://sprites/ui/checkmark.png" id="3_qdhx8"]
 
 [node name="RecipeItem" type="VBoxContainer"]
 alignment = 1
 script = ExtResource("1_rblus")
 
-[node name="Icon" type="TextureRect" parent="."]
-unique_name_in_owner = true
+[node name="Control2" type="Control" parent="."]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 2
+
+[node name="Icon" type="TextureRect" parent="Control2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -32.0
+offset_right = 75.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("1_jm8j6")
 stretch_mode = 3
+
+[node name="Checkmark" type="TextureRect" parent="Control2"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_qdhx8")
 
 [node name="Label" type="Label" parent="."]
 unique_name_in_owner = true

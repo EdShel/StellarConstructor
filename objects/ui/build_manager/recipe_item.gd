@@ -11,6 +11,9 @@ signal clicked(node: ToolbarItem)
 	set(value): %Icon.texture = value
 @export var item_type: String = "ore"
 @export var item_count: int = 10
+@export var is_checked: bool:
+	get: return %Checkmark.visible
+	set(value): %Checkmark.visible = value
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
