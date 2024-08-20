@@ -31,7 +31,7 @@ vec2 fillTexture(vec2 coord)
 {
     vec4 patchChunk = chunk();
     vec4 chunk = fillChunk();
-    
+
     // 1
     if(coord.x < chunk.x && coord.y < chunk.y)
     {

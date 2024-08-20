@@ -1,11 +1,13 @@
 extends Panel
 
+var tween: Tween = null
+
 func _ready() -> void:
 	SC.connect("power_stats_changed", rerender_progress)
-	rerender_progress()
-	%Status.visible = false
+	rerender_progress(true)
+	%Status.modulate = Color.TRANSPARENT
 
-func rerender_progress() -> void:
+func rerender_progress(dont_blink_status: bool = false) -> void:
 	var game = SC.game
 	%ProductionIndicator.max_value = game.power_goal
 	%ConsumptionIndicator.max_value = game.power_goal
@@ -15,11 +17,26 @@ func rerender_progress() -> void:
 	
 	var template = "Consumption %sGW, Production %sGW, Goal %sGW"
 	%Status.text = template % [game.power_consumption, game.power_production, game.power_goal]
-	pass
+	
+	if not dont_blink_status:
+		if tween:
+			tween.stop()
+		tween = create_tween()
+		tween.tween_property(%Status, "modulate", Color.WHITE, 0.2)
+		tween.tween_property(%Status, "modulate", Color.TRANSPARENT, 0.2).set_delay(3.0)
+
 
 
 func _on_mouse_entered() -> void:
-	%Status.visible = true
+	if tween:
+		tween.stop()
+		tween = null
+	var t = create_tween()
+	t.tween_property(%Status, "modulate", Color.WHITE, 0.2)
 
 func _on_mouse_exited() -> void:
-	%Status.visible = false
+	if tween:
+		tween.stop()
+		tween = null
+	var t = create_tween()
+	t.tween_property(%Status, "modulate", Color.TRANSPARENT, 0.2)
