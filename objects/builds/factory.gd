@@ -86,6 +86,7 @@ func get_item_to_shoot() -> String:
 	return recipe.result_item
 
 func update_recipe(new_recipe: FactoryRecipe) -> void:
+	clear_inventory_after_recipe_change(_recipe, new_recipe)
 	_recipe = new_recipe
 	if !_recipe and !no_recipe:
 		no_recipe = preload("res://objects/builds/utilities/warning.tscn").instantiate()
@@ -94,6 +95,32 @@ func update_recipe(new_recipe: FactoryRecipe) -> void:
 	if recipe and no_recipe:
 		no_recipe.queue_free()
 		no_recipe = null
+
+func clear_inventory_after_recipe_change(old_recipe: FactoryRecipe, new_recipe: FactoryRecipe) -> void:
+	if not old_recipe or not new_recipe:
+		return
+	if old_recipe.result_item == new_recipe.result_item:
+		return
+		
+	var changed = false
+	for item in inventory.items:
+		if item["count"] < 1:
+			continue
+		var item_type = item["item"]
+		var should_keep = item_type == "ore" or item_type == "water" or item_type == "crystal"
+		if not should_keep:
+			item["count"] = 0
+			changed = true
+	
+	if changed:
+		inventory.changed.emit()
+
+
+func is_ingredient_in_recipe(item: String, recipe: FactoryRecipe) -> bool:
+	for ingredient in recipe.ingredients:
+		if ingredient.item == item:
+			return true
+	return false
 
 func update_power_status() -> void:
 	var game = SC.game
