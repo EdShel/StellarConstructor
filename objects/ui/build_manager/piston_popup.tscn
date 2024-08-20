@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://chmvcqlcqmk7y"]
+[gd_scene load_steps=8 format=3 uid="uid://chmvcqlcqmk7y"]
 
 [ext_resource type="PackedScene" uid="uid://11ur7mtmo2rn" path="res://objects/ui/build_manager/base_popup.tscn" id="1_5ae4e"]
 [ext_resource type="Script" path="res://objects/ui/build_manager/piston_popup.gd" id="2_cb4u1"]
 [ext_resource type="Texture2D" uid="uid://dxrv5p3lkibr0" path="res://sprites/directions/right.tres" id="3_71s4k"]
 [ext_resource type="Texture2D" uid="uid://cfsmy0g3axvlt" path="res://sprites/directions/left.tres" id="3_icccm"]
+[ext_resource type="Texture2D" uid="uid://bl7xg4egh0wd5" path="res://sprites/ui/checkmark.png" id="4_6s3qi"]
 [ext_resource type="Texture2D" uid="uid://dnhaqeh105f6e" path="res://sprites/directions/up.tres" id="4_v1k27"]
 [ext_resource type="Texture2D" uid="uid://ba2affub3of43" path="res://sprites/directions/down.tres" id="6_0k76h"]
 
@@ -30,14 +31,74 @@ alignment = 1
 layout_mode = 2
 texture = ExtResource("3_icccm")
 
+[node name="LeftCheckmark" type="TextureRect" parent="HBoxContainer/MarginContainer/VBoxContainer/Directions/left" index="0"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("4_6s3qi")
+stretch_mode = 2
+
 [node name="up" type="TextureRect" parent="HBoxContainer/MarginContainer/VBoxContainer/Directions" index="1"]
 layout_mode = 2
 texture = ExtResource("4_v1k27")
+
+[node name="UpCheckmark" type="TextureRect" parent="HBoxContainer/MarginContainer/VBoxContainer/Directions/up" index="0"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("4_6s3qi")
+stretch_mode = 2
 
 [node name="down" type="TextureRect" parent="HBoxContainer/MarginContainer/VBoxContainer/Directions" index="2"]
 layout_mode = 2
 texture = ExtResource("6_0k76h")
 
+[node name="DownCheckmark" type="TextureRect" parent="HBoxContainer/MarginContainer/VBoxContainer/Directions/down" index="0"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("4_6s3qi")
+stretch_mode = 2
+
 [node name="right" type="TextureRect" parent="HBoxContainer/MarginContainer/VBoxContainer/Directions" index="3"]
 layout_mode = 2
 texture = ExtResource("3_71s4k")
+
+[node name="RightCheckmark" type="TextureRect" parent="HBoxContainer/MarginContainer/VBoxContainer/Directions/right" index="0"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("4_6s3qi")
+stretch_mode = 2

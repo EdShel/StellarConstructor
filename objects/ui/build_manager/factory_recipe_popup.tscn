@@ -12,7 +12,7 @@ text = "Space Factory"
 [node name="Subtitle" parent="HBoxContainer/MarginContainer/VBoxContainer" index="1"]
 text = "Select crafting recipe for this machine.
 Supply necessary ingredients using Gravity Pistons (i.e. buildings can NOT exchange items without Pistons).
-Also, use Gravity Pistons to extract the produced item to be supplied to other Space Factories."
+Also, use Gravity Pistons to move the produced material away."
 
 [node name="HSeparator" type="HSeparator" parent="HBoxContainer/MarginContainer/VBoxContainer" index="2"]
 layout_mode = 2

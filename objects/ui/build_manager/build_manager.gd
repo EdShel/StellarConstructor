@@ -19,6 +19,7 @@ func handle_open_build(item_type: String, node: Node2D) -> void:
 		return
 	if item_type == "piston":
 		var popup = preload("res://objects/ui/build_manager/piston_popup.tscn").instantiate()
+		popup.current_piston_direction = node.direction
 		popup.connect("closed", func(data: Dictionary) -> void: 
 			popup.queue_free()
 			if data.is_empty():
