@@ -41,6 +41,8 @@ func handle_open_build(item_type: String, node: Node2D) -> void:
 		return
 	if item_type == "factory":
 		var popup = preload("res://objects/ui/build_manager/factory_recipe_popup.tscn").instantiate()
+		if node.recipe:
+			popup.current_recipe_item = node.recipe.result_item
 		popup.connect("closed", func(data: Dictionary) -> void:
 			popup.queue_free()
 			if data.is_empty():

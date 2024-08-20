@@ -1,11 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://d1lerhkjp727w"]
+[gd_scene load_steps=4 format=3 uid="uid://d1lerhkjp727w"]
 
 [ext_resource type="Texture2D" uid="uid://csidmtq3gi3s1" path="res://sprites/items/circuit.tres" id="1_jyf4r"]
 [ext_resource type="Script" path="res://objects/ui/build_manager/factory_recipe_item.gd" id="2_jb18m"]
+[ext_resource type="Texture2D" uid="uid://bl7xg4egh0wd5" path="res://sprites/ui/checkmark.png" id="3_56xbv"]
 
 [node name="FactoryRecipeItem" type="TextureRect"]
 texture = ExtResource("1_jyf4r")
 script = ExtResource("2_jb18m")
+
+[node name="Checkmark" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("3_56xbv")
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
