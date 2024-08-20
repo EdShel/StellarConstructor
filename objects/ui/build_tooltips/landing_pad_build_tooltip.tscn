@@ -45,6 +45,23 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Minerals"
 
+[node name="MiningProgress" type="ProgressBar" parent="VBoxContainer/VBoxContainer" index="2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+show_percentage = false
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/MiningProgress" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Mining resources for the next rocket..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="HSeparator2" type="HSeparator" parent="VBoxContainer" index="4"]
 layout_mode = 2
 
