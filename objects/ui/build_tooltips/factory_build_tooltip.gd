@@ -11,7 +11,7 @@ func _enter_tree() -> void:
 		%RecipeName.text = factory.recipe.title
 	else:
 		%RecipeIcon.texture = preload("res://sprites/statuses/warning.png")
-		%RecipeName.text = "Specify crafting recipe"
+		%RecipeName.text = "Click to specify crafting recipe"
 	%CraftingProgress.visible = !!factory.recipe
 	
 	%PowerConsumption.power_consumption = factory.power_consumption

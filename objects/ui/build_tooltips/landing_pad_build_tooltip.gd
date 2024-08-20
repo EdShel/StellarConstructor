@@ -10,7 +10,7 @@ func _enter_tree() -> void:
 		%RecipeName.text = ItemHelper.get_item_name(landing_pad.recipe["item_type"])
 	else:
 		%RecipeIcon.texture = preload("res://sprites/statuses/warning.png")
-		%RecipeName.text = "Specify delivery resource"
+		%RecipeName.text = "Click to specify delivery resource"
 	
 	%BuildInventory.inventory = landing_pad.inventory
 	
