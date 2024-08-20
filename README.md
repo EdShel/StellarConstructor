@@ -6,4 +6,4 @@ Factory builder game about constructing Dyson Sphere. Get raw materials from roc
 The game can be beaten with mouse only but you can also use WASD/Arrows to move camera or press Escape key to dismiss stuff.
 
 # Inspiration
-The game is hugely inspired by Factorio's Space Exploration mode but has a unique twist as items must be transported only using Gravity Pistons.
+The game is hugely inspired by Factorio's Space Exploration mod but has a unique twist as items must be transported only using Gravity Pistons.
