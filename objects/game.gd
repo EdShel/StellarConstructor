@@ -64,7 +64,7 @@ func _process(delta: float) -> void:
 
 func handle_toolbar_item_pressed(item_type: String) -> void:
 	if _ghost_node_item == item_type:
-		clear_ghost()
+		SC.toolbar_item_dismiss.emit()
 		return
 	
 	var inventory_item = inventory.get_inventory_item(item_type)
@@ -80,6 +80,7 @@ func handle_toolbar_item_pressed(item_type: String) -> void:
 	
 	%Camera2D.is_drag_allowed = false
 	SC.enable_no_tooltip_mode.emit(true)
+	SC.toolbar_item_placing_begin.emit(item_type)
 
 func handle_toolbar_item_place(data: Dictionary) -> void:
 	var inventory_item = inventory.get_inventory_item(_ghost_node_item)
@@ -97,7 +98,7 @@ func handle_toolbar_item_place(data: Dictionary) -> void:
 	inventory.increase(_ghost_node_item, -1)
 	%Toolbar.init_inventory(inventory.items)
 	if inventory.get_inventory_item(_ghost_node_item)["count"] <= 0:
-		clear_ghost()
+		SC.toolbar_item_dismiss.emit()
 	
 	SC.recompute_space_platform_size.emit()
 	%BuildPlaceSound.play()

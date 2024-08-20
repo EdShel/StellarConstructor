@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var min_size: Vector2 = Vector2(256, 256)
+@export var min_size: Vector2 = Vector2(512, 512)
 @export var bbox_padding: float = 128.0
 
 func _ready() -> void:

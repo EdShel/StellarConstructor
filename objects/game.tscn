@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bnrh75aysmd6v"]
+[gd_scene load_steps=14 format=3 uid="uid://bnrh75aysmd6v"]
 
 [ext_resource type="Script" path="res://objects/game.gd" id="1_86h5b"]
 [ext_resource type="Script" path="res://objects/utilities/camera_controller.gd" id="1_bl32n"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dwjelvpqhhdju" path="res://objects/ui/power_indicator/power_indicator.tscn" id="5_s0rco"]
 [ext_resource type="PackedScene" uid="uid://c3wsqsjek417k" path="res://objects/ui/build_manager/build_manager.tscn" id="6_76ayv"]
 [ext_resource type="PackedScene" uid="uid://dqc33rdvt6280" path="res://objects/utilities/piston_orchestrator.tscn" id="6_c4gnl"]
+[ext_resource type="PackedScene" uid="uid://cw2ihg88c3kxd" path="res://objects/ui/toolbar/clear_edit_mode_container.tscn" id="7_aw20u"]
 [ext_resource type="PackedScene" uid="uid://b0y7cwbq2t5ty" path="res://objects/ui/build_tooltips/build_tooltip_manager.tscn" id="7_wkbhf"]
 [ext_resource type="AudioStream" uid="uid://jb6xjkatqwdq" path="res://audio/build_place.wav" id="11_08l6w"]
 [ext_resource type="AudioStream" uid="uid://covw6qcctcnk3" path="res://audio/build_destroy.wav" id="12_e7fog"]
@@ -38,6 +39,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 2
+
+[node name="ClearEditModeContainer" parent="GameUI/VBoxContainer" instance=ExtResource("7_aw20u")]
+layout_mode = 2
 
 [node name="Toolbar" parent="GameUI/VBoxContainer" instance=ExtResource("4_ot15t")]
 unique_name_in_owner = true

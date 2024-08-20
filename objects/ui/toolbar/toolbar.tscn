@@ -17,25 +17,25 @@ script = ExtResource("1_k1agg")
 [node name="piston" parent="." instance=ExtResource("1_gsl5n")]
 layout_mode = 2
 
-[node name="Icon" parent="piston" index="0"]
+[node name="Icon" parent="piston" index="1"]
 texture = ExtResource("2_3lwy2")
 
 [node name="factory" parent="." instance=ExtResource("1_gsl5n")]
 layout_mode = 2
 
-[node name="Icon" parent="factory" index="0"]
+[node name="Icon" parent="factory" index="1"]
 texture = ExtResource("3_ts8rh")
 
 [node name="solar" parent="." instance=ExtResource("1_gsl5n")]
 layout_mode = 2
 
-[node name="Icon" parent="solar" index="0"]
+[node name="Icon" parent="solar" index="1"]
 texture = ExtResource("4_ufjfk")
 
 [node name="landing_pad" parent="." instance=ExtResource("1_gsl5n")]
 layout_mode = 2
 
-[node name="Icon" parent="landing_pad" index="0"]
+[node name="Icon" parent="landing_pad" index="1"]
 texture = ExtResource("5_j3vlf")
 
 [editable path="piston"]
